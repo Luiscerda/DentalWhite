@@ -155,12 +155,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Clases\Ajax_Data.cs" />
+    <Compile Include="Clases\Utilidades.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -571,6 +574,7 @@
     <Content Include="Content\plugins\summernote\summernote.min.css" />
     <Content Include="Content\plugins\summernote\summernote.min.js" />
     <Content Include="Content\plugins\summernote\summernote.min.js.LICENSE.txt" />
+    <Content Include="Content\plugins\sweetalert\sweetalert.css" />
     <Content Include="Content\plugins\tempusdominus-bootstrap-4\css\tempusdominus-bootstrap-4.css" />
     <Content Include="Content\plugins\tempusdominus-bootstrap-4\css\tempusdominus-bootstrap-4.min.css" />
     <Content Include="Content\plugins\tempusdominus-bootstrap-4\js\tempusdominus-bootstrap-4.js" />
@@ -578,6 +582,9 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\App\Login\Login.js" />
+    <Content Include="Scripts\App\Utilidades.js" />
+    <Content Include="Scripts\Base64.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -653,6 +660,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Plugins\sweetalert\sweetalert.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -671,7 +679,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -701,6 +708,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DentalWhite.AccesoDatos\DentalWhite.AccesoDatos.csproj">
+      <Project>{1f8c6a83-7051-4b66-9007-b343e2f62b29}</Project>
+      <Name>DentalWhite.AccesoDatos</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
