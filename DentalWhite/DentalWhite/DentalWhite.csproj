@@ -582,6 +582,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\App\Login\DataUser.js" />
     <Content Include="Scripts\App\Login\Login.js" />
     <Content Include="Scripts\App\Utilidades.js" />
     <Content Include="Scripts\Base64.js" />

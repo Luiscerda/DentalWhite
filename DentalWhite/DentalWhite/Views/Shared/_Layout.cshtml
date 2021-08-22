@@ -39,6 +39,9 @@ else
                     <li class="nav-item">
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href='@Url.Action("Index","Home")' class="nav-link">Inicio</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -59,7 +62,7 @@ else
                             <img src="~/Content/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image" />
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block">Luisk Cerda</a>
+                            <a href="#" class="d-block">@usuario.Nombre.Trim()  @usuario.Apellido.Trim()</a>
                         </div>
                     </div>
                     <nav class="mt-2">
@@ -67,7 +70,33 @@ else
                             <li class="nav-item menu-open">
                                 <a href="#" class="nav-link active">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>Dashboard <i class="right fas fa-angle-left"></i></p>
+                                    <p>Dashboard</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-user-friends"></i>
+                                    <p>Pacientes <i class="right fas fa-angle-left"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="fas fa-user-plus"></i>
+                                            <p>Registrar</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="fas fa-list"></i>
+                                            <p>Consultar</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a id="cerrarSesion" class="nav-link" style="cursor:pointer">
+                                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                                    <p>Cerrar sesion</p>
                                 </a>
                             </li>
                         </ul>
@@ -79,12 +108,12 @@ else
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Dashboard</h1>
+                                <h1 class="m-0">@ViewBag.Title</h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active">Dashboard</li>
+                                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                                    <li class="breadcrumb-item active">@ViewBag.Title</li>
                                 </ol>
                             </div>
                         </div>
@@ -115,12 +144,15 @@ else
         <script src="~/Content/plugins/sparklines/sparkline.js"></script>
         @*<script src="~/Content/plugins/jqvmap/jquery.vmap.min.js"></script>*@
         @*<script src="~/Content/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>*@
+        <script src="~/Scripts/App/Utilidades.js"></script>
+        <script src="~/Scripts/Base64.js"></script>
         <script src="~/Content/plugins/jquery-knob/jquery.knob.min.js"></script>
         <script src="~/Content/plugins/moment/moment.min.js"></script>
         <script src="~/Content/plugins/daterangepicker/daterangepicker.js"></script>
         <script src="~/Content/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
         <script src="~/Content/plugins/summernote/summernote-bs4.min.js"></script>
         <script src="~/Content/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <script src="~/Scripts/App/Login/DataUser.js"></script>
         <script src="~/Content/dist/js/adminlte.js"></script>
         <script src="~/Content/dist/js/demo.js"></script>
         @*<script src="~/Content/dist/js/pages/dashboard.js"></script>*@
