@@ -157,12 +157,15 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Clases\Ajax_Data.cs" />
     <Compile Include="Clases\Utilidades.cs" />
+    <Compile Include="Controllers\ComunController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ComunModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -197,6 +200,10 @@
     <Content Include="Content\plugins\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Content\plugins\bootstrap\js\bootstrap.js" />
     <Content Include="Content\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\plugins\bs-stepper\css\bs-stepper.css" />
+    <Content Include="Content\plugins\bs-stepper\css\bs-stepper.min.css" />
+    <Content Include="Content\plugins\bs-stepper\js\bs-stepper.js" />
+    <Content Include="Content\plugins\bs-stepper\js\bs-stepper.min.js" />
     <Content Include="Content\plugins\chart.js\Chart.bundle.js" />
     <Content Include="Content\plugins\chart.js\Chart.bundle.min.js" />
     <Content Include="Content\plugins\chart.js\Chart.css" />
@@ -224,6 +231,10 @@
     <Content Include="Content\plugins\fontawesome-free\webfonts\fa-solid-900.svg" />
     <Content Include="Content\plugins\icheck-bootstrap\icheck-bootstrap.css" />
     <Content Include="Content\plugins\icheck-bootstrap\icheck-bootstrap.min.css" />
+    <Content Include="Content\plugins\inputmask\inputmask.js" />
+    <Content Include="Content\plugins\inputmask\inputmask.min.js" />
+    <Content Include="Content\plugins\inputmask\jquery.inputmask.js" />
+    <Content Include="Content\plugins\inputmask\jquery.inputmask.min.js" />
     <Content Include="Content\plugins\jquery-knob\jquery.knob.min.js" />
     <Content Include="Content\plugins\jquery-ui\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\plugins\jquery-ui\images\ui-icons_555555_256x240.png" />
@@ -422,6 +433,74 @@
     <Content Include="Content\plugins\overlayScrollbars\js\jquery.overlayScrollbars.min.js" />
     <Content Include="Content\plugins\overlayScrollbars\js\OverlayScrollbars.js" />
     <Content Include="Content\plugins\overlayScrollbars\js\OverlayScrollbars.min.js" />
+    <Content Include="Content\plugins\select2-bootstrap4-theme\select2-bootstrap4.css" />
+    <Content Include="Content\plugins\select2-bootstrap4-theme\select2-bootstrap4.min.css" />
+    <Content Include="Content\plugins\select2\css\select2.css" />
+    <Content Include="Content\plugins\select2\css\select2.min.css" />
+    <Content Include="Content\plugins\select2\js\i18n\af.js" />
+    <Content Include="Content\plugins\select2\js\i18n\ar.js" />
+    <Content Include="Content\plugins\select2\js\i18n\az.js" />
+    <Content Include="Content\plugins\select2\js\i18n\bg.js" />
+    <Content Include="Content\plugins\select2\js\i18n\bn.js" />
+    <Content Include="Content\plugins\select2\js\i18n\bs.js" />
+    <Content Include="Content\plugins\select2\js\i18n\build.txt" />
+    <Content Include="Content\plugins\select2\js\i18n\ca.js" />
+    <Content Include="Content\plugins\select2\js\i18n\cs.js" />
+    <Content Include="Content\plugins\select2\js\i18n\da.js" />
+    <Content Include="Content\plugins\select2\js\i18n\de.js" />
+    <Content Include="Content\plugins\select2\js\i18n\dsb.js" />
+    <Content Include="Content\plugins\select2\js\i18n\el.js" />
+    <Content Include="Content\plugins\select2\js\i18n\en.js" />
+    <Content Include="Content\plugins\select2\js\i18n\es.js" />
+    <Content Include="Content\plugins\select2\js\i18n\et.js" />
+    <Content Include="Content\plugins\select2\js\i18n\eu.js" />
+    <Content Include="Content\plugins\select2\js\i18n\fa.js" />
+    <Content Include="Content\plugins\select2\js\i18n\fi.js" />
+    <Content Include="Content\plugins\select2\js\i18n\fr.js" />
+    <Content Include="Content\plugins\select2\js\i18n\gl.js" />
+    <Content Include="Content\plugins\select2\js\i18n\he.js" />
+    <Content Include="Content\plugins\select2\js\i18n\hi.js" />
+    <Content Include="Content\plugins\select2\js\i18n\hr.js" />
+    <Content Include="Content\plugins\select2\js\i18n\hsb.js" />
+    <Content Include="Content\plugins\select2\js\i18n\hu.js" />
+    <Content Include="Content\plugins\select2\js\i18n\hy.js" />
+    <Content Include="Content\plugins\select2\js\i18n\id.js" />
+    <Content Include="Content\plugins\select2\js\i18n\is.js" />
+    <Content Include="Content\plugins\select2\js\i18n\it.js" />
+    <Content Include="Content\plugins\select2\js\i18n\ja.js" />
+    <Content Include="Content\plugins\select2\js\i18n\ka.js" />
+    <Content Include="Content\plugins\select2\js\i18n\km.js" />
+    <Content Include="Content\plugins\select2\js\i18n\ko.js" />
+    <Content Include="Content\plugins\select2\js\i18n\lt.js" />
+    <Content Include="Content\plugins\select2\js\i18n\lv.js" />
+    <Content Include="Content\plugins\select2\js\i18n\mk.js" />
+    <Content Include="Content\plugins\select2\js\i18n\ms.js" />
+    <Content Include="Content\plugins\select2\js\i18n\nb.js" />
+    <Content Include="Content\plugins\select2\js\i18n\ne.js" />
+    <Content Include="Content\plugins\select2\js\i18n\nl.js" />
+    <Content Include="Content\plugins\select2\js\i18n\pl.js" />
+    <Content Include="Content\plugins\select2\js\i18n\ps.js" />
+    <Content Include="Content\plugins\select2\js\i18n\pt-BR.js" />
+    <Content Include="Content\plugins\select2\js\i18n\pt.js" />
+    <Content Include="Content\plugins\select2\js\i18n\ro.js" />
+    <Content Include="Content\plugins\select2\js\i18n\ru.js" />
+    <Content Include="Content\plugins\select2\js\i18n\sk.js" />
+    <Content Include="Content\plugins\select2\js\i18n\sl.js" />
+    <Content Include="Content\plugins\select2\js\i18n\sq.js" />
+    <Content Include="Content\plugins\select2\js\i18n\sr-Cyrl.js" />
+    <Content Include="Content\plugins\select2\js\i18n\sr.js" />
+    <Content Include="Content\plugins\select2\js\i18n\sv.js" />
+    <Content Include="Content\plugins\select2\js\i18n\th.js" />
+    <Content Include="Content\plugins\select2\js\i18n\tk.js" />
+    <Content Include="Content\plugins\select2\js\i18n\tr.js" />
+    <Content Include="Content\plugins\select2\js\i18n\uk.js" />
+    <Content Include="Content\plugins\select2\js\i18n\vi.js" />
+    <Content Include="Content\plugins\select2\js\i18n\zh-CN.js" />
+    <Content Include="Content\plugins\select2\js\i18n\zh-TW.js" />
+    <Content Include="Content\plugins\select2\js\select2.full.js" />
+    <Content Include="Content\plugins\select2\js\select2.full.min.js" />
+    <Content Include="Content\plugins\select2\js\select2.js" />
+    <Content Include="Content\plugins\select2\js\select2.min.js" />
     <Content Include="Content\plugins\sparklines\sparkline.js" />
     <Content Include="Content\plugins\summernote\lang\summernote-ar-AR.js" />
     <Content Include="Content\plugins\summernote\lang\summernote-ar-AR.min.js" />
@@ -584,7 +663,8 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\App\Login\DataUser.js" />
     <Content Include="Scripts\App\Login\Login.js" />
-    <Content Include="Scripts\App\Utilidades.js" />
+    <Content Include="Scripts\App\Paciente\AddPaciente.js" />
+    <Content Include="Scripts\Utilidades.js" />
     <Content Include="Scripts\Base64.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -655,7 +735,12 @@
     <Content Include="Content\dist\js\.eslintrc.json" />
     <Content Include="Content\dist\js\adminlte.js.map" />
     <Content Include="Content\dist\js\adminlte.min.js.map" />
+    <Content Include="Content\plugins\bs-stepper\css\bs-stepper.css.map" />
+    <Content Include="Content\plugins\bs-stepper\css\bs-stepper.min.css.map" />
+    <Content Include="Content\plugins\bs-stepper\js\bs-stepper.js.map" />
+    <Content Include="Content\plugins\bs-stepper\js\bs-stepper.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\App\Servicios\Crud.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -677,9 +762,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Paciente\AddPatient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Comun\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

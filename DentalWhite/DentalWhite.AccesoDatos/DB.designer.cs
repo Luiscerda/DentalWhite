@@ -69,6 +69,14 @@ namespace DentalWhite.AccesoDatos
 				return this.GetTable<Vw_Usuarios>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Vw_TipoDocumento> Vw_TipoDocumento
+		{
+			get
+			{
+				return this.GetTable<Vw_TipoDocumento>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Usuarios")]
@@ -345,6 +353,69 @@ namespace DentalWhite.AccesoDatos
 				if ((this._DesRol != value))
 				{
 					this._DesRol = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_TipoDocumento")]
+	public partial class Vw_TipoDocumento
+	{
+		
+		private int _TipoId;
+		
+		private string _CodTipo;
+		
+		private string _DescTipo;
+		
+		public Vw_TipoDocumento()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoId", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int TipoId
+		{
+			get
+			{
+				return this._TipoId;
+			}
+			set
+			{
+				if ((this._TipoId != value))
+				{
+					this._TipoId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodTipo", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string CodTipo
+		{
+			get
+			{
+				return this._CodTipo;
+			}
+			set
+			{
+				if ((this._CodTipo != value))
+				{
+					this._CodTipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescTipo", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string DescTipo
+		{
+			get
+			{
+				return this._DescTipo;
+			}
+			set
+			{
+				if ((this._DescTipo != value))
+				{
+					this._DescTipo = value;
 				}
 			}
 		}

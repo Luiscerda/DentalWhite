@@ -33,5 +33,15 @@ namespace DentalWhite.AccesoDatos
             return usuario;
         }
         #endregion
+
+        #region Comun
+        public List<Vw_TipoDocumento> GetTipoDocumentos()
+        {
+            Conectar();
+            List<Vw_TipoDocumento> tipoDocumentos = DB.Vw_TipoDocumento.ToList();
+            Desconectar();
+            return tipoDocumentos;
+        }
+        #endregion
     }
 }

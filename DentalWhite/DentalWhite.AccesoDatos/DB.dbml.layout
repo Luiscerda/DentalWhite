@@ -8,5 +8,11 @@
         <elementListCompartment Id="48e3d2b1-fbd8-4acc-865f-dd132faae591" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="cc081dda-9de1-4faa-bef8-40cfe87fad24" isExpanded="false" absoluteBounds="2.75, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/DBDataContext/Vw_TipoDocumento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="33fe7601-5a1e-42eb-bae4-5ee3cee15b90" absoluteBounds="2.7649999999999997, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

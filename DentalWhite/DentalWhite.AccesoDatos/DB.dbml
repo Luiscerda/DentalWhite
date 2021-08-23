@@ -19,4 +19,11 @@
       <Column Name="DesRol" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.Vw_TipoDocumento" Member="Vw_TipoDocumento">
+    <Type Name="Vw_TipoDocumento">
+      <Column Name="TipoId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CodTipo" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DescTipo" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>
