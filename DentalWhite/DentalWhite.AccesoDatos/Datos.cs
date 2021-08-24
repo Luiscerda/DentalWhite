@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 using System.Threading.Tasks;
+using System.Transactions;
+using System.Reflection;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace DentalWhite.AccesoDatos
 {
@@ -11,7 +15,7 @@ namespace DentalWhite.AccesoDatos
     {
         #region Conexion
         DBDataContext DB = new DBDataContext(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString);
-
+        public static string _LOGPATH = "";
         public void Conectar()
         {
             DB = new DBDataContext(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString);
@@ -20,6 +24,15 @@ namespace DentalWhite.AccesoDatos
         {
             DB.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
             DB.Dispose();
+        }
+        public static void WriteExceptionLog(Exception ex, string Json = null)
+        {
+            if (!Directory.Exists(_LOGPATH + "\\" + DateTime.Now.ToShortDateString().Replace("/", "")))
+            {
+                Directory.CreateDirectory(_LOGPATH + "\\" + DateTime.Now.ToShortDateString().Replace("/", ""));
+            };
+
+            File.WriteAllText(_LOGPATH + "\\" + DateTime.Now.ToShortDateString().Replace("/", "") + "\\" + DateTime.Now.TimeOfDay.Ticks.ToString() + ".txt", JsonConvert.SerializeObject(ex.Message) + "..." + Json);
         }
         #endregion
 
@@ -41,6 +54,82 @@ namespace DentalWhite.AccesoDatos
             List<Vw_TipoDocumento> tipoDocumentos = DB.Vw_TipoDocumento.ToList();
             Desconectar();
             return tipoDocumentos;
+        }
+        public List<Vw_Departamentos> GetDepartamentos()
+        {
+            Conectar();
+            List<Vw_Departamentos> departamentos = DB.Vw_Departamentos.ToList();
+            Desconectar();
+            return departamentos;
+        }
+        public List<Vw_Municipios> GetMunicipiosByCodDepartamento(string codDepartamento)
+        {
+            Conectar();
+            List<Vw_Municipios> municipios = DB.Vw_Municipios.Where(c => c.CodDepartamento.Trim() == codDepartamento.Trim()).ToList();
+            Desconectar();
+            return municipios;
+        }
+        #endregion
+
+        #region TimeTransactionScope
+        private void SetTransactionManagerField(string fieldName, object value)
+        {
+            typeof(TransactionManager).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Static).SetValue(null, value);
+        }
+
+        public TransactionScope CreateTransactionScope(TimeSpan timeout)
+        {
+            SetTransactionManagerField("_cachedMaxTimeout", true);
+            SetTransactionManagerField("_maximumTimeout", timeout);
+            return new TransactionScope(TransactionScopeOption.RequiresNew, timeout);
+        }
+
+        #endregion
+
+        #region Paciente
+        public int Add_Paciente(Vw_Paciente paciente)
+        {
+            int result = 0;
+            try
+            {
+                this.Conectar();
+                using (TransactionScope tran = CreateTransactionScope(TimeSpan.FromMinutes(1800)))
+                {
+                    try
+                    {
+                        int a = (int)DB.sp_Add_Paciente(paciente.CodTipoDoc, paciente.Identificacion, paciente.PrimerNombe, paciente.SegundoNombre,
+                            paciente.PrimerApellido, paciente.SegundoApellido, paciente.Edad, paciente.FechaNacimiento, paciente.Celular, paciente.Telefono,
+                            paciente.Correo, paciente.CodDepartamento, paciente.CodMunicipio, paciente.Barrio, paciente.Direccion, true, paciente.UserReg, DateTime.Now).FirstOrDefault().Id;
+
+                        int b = (int)DB.sp_Add_Usuario(paciente.Identificacion, "DW2021", paciente.PrimerNombe, paciente.PrimerApellido,
+                            paciente.Correo, paciente.Celular, "002", true, paciente.Identificacion, DateTime.Now, paciente.UserReg).FirstOrDefault().Id;
+
+                        DB.SubmitChanges();
+                        tran.Complete();
+                        result = 1;
+                    }
+                    catch (Exception exe)
+                    {
+                        Transaction.Current.Rollback();
+                        WriteExceptionLog(exe);
+                        result = -1;
+                    }
+                }
+                Desconectar();
+            }
+            catch (Exception ex)
+            {
+                result = -1;
+                WriteExceptionLog(ex);
+            }
+            return result;
+        }
+        public Vw_Paciente GetPacienteByIdentificacion(string identificacion)
+        {
+            Conectar();
+            Vw_Paciente paciente = DB.Vw_Paciente.Where(c => c.Identificacion.Trim() == identificacion.Trim()).FirstOrDefault();
+            Desconectar();
+            return paciente;
         }
         #endregion
     }

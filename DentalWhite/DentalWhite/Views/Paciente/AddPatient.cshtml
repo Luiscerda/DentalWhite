@@ -5,159 +5,178 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form id="addPatientForms">    
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title">Datos Personales</h3>
-                </div>
-                <div class="card-body p-0">
-                    <div class="bs-stepper">
-                        <div class="bs-stepper-header" role="tablist">
-                            <div class="step" data-target="#infPer-part">
-                                <button class="step-trigger" role="tab" type="button" aria-controls="infPer-part" id="infPer-part-trigger">
-                                    <span class="bs-stepper-circle">1</span>
-                                    <span class="bs-stepper-label">Informacion personal</span>
-                                </button>
-                            </div>
-                            <div class="line"></div>
-                            <div class="step" data-target="#infCont-part">
-                                <button class="step-trigger" role="tab" type="button" aria-controls="infCont-part" id="infCont-part-trigger">
-                                    <span class="bs-stepper-circle">2</span>
-                                    <span class="bs-stepper-label">Informacion De Contacto</span>
-                                </button>
-                            </div>
-                            <div class="line"></div>
-                            <div class="step" data-target="#infRes-part">
-                                <button class="step-trigger" role="tab" type="button" aria-controls="infRes-part" id="infRes-part-trigger">
-                                    <span class="bs-stepper-circle">3</span>
-                                    <span class="bs-stepper-label">Informacion De Residencia</span>
-                                </button>
-                            </div>
+<style>
+    .labelError {
+        color: #dc3545;
+        font-size: 80%;
+        margin-top: .25rem;
+        width: 100%;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Datos Personales</h3>
+            </div>
+            <div class="card-body p-0">
+                <div class="bs-stepper">
+                    <div class="bs-stepper-header" role="tablist">
+                        <div class="step" data-target="#infPer-part">
+                            <button class="step-trigger" role="tab" type="button" aria-controls="infPer-part" id="infPer-part-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">Informacion personal</span>
+                            </button>
                         </div>
-                        <div class="bs-stepper-content">
-                            <div id="infPer-part" class="content" role="tabpanel" aria-labelledby="infPer-part-trigger">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Tipo Identificacion</label>
-                                            <select class="form-control select2" id="selectTipoId"></select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="primerApellidoField">Primer Apellido</label>
-                                            <input class="form-control" tabindex="4" id="primerApellidoField" />
-                                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#infCont-part">
+                            <button class="step-trigger" role="tab" type="button" aria-controls="infCont-part" id="infCont-part-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Informacion De Contacto</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#infRes-part">
+                            <button class="step-trigger" role="tab" type="button" aria-controls="infRes-part" id="infRes-part-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">Informacion De Residencia</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content">
+                        <div id="infPer-part" class="content" role="tabpanel" aria-labelledby="infPer-part-trigger">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Tipo Identificacion</label>
+                                        <select class="form-control select2" id="selectTipoId"></select>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="identificacionField">Identificacion</label>
-                                            <input class="form-control" tabindex="1" id="identificacionField" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="segundoApellidoField">Segundo Apellido</label>
-                                            <input class="form-control" tabindex="5" id="segundoApellidoField" />
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="primerApellidoField">Primer Apellido</label>
+                                        <input class="form-control inputLast" name="lastName" disabled tabindex="4" id="primerApellidoField" />
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="primerNombreField">Primer Nombre</label>
-                                            <input class="form-control" tabindex="2" id="primerNombreField" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="edadField">Edad</label>
-                                            <input class="form-control" type="number" min="1" tabindex="6" id="edadField" />
-                                        </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="identificacionField">Identificacion</label>
+                                        <input class="form-control inputId" name="identification" tabindex="1" id="identificacionField" />
+                                        <span id="inputIdError" class="labelError">Identificacion requerida, Minimo 7 caracteres</span>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="segundoNombreField">Segundo Nombre</label>
-                                            <input class="form-control" tabindex="3" id="segundoNombreField" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Fecha Nacimiento</label>
-                                            <div class="input-group date" id="fechaC" data-target-input="nearest">
-                                                <input type="text" onkeydown="return false" class="form-control datetimepicker-input" data-target="#fechaC" />
-                                                <div class="input-group-append" data-target="#fechaC" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                </div>
+                                    <div class="form-group">
+                                        <label for="segundoApellidoField">Segundo Apellido</label>
+                                        <input class="form-control" tabindex="5" id="segundoApellidoField" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="primerNombreField">Primer Nombre</label>
+                                        <input class="form-control inputFirs" disabled name="firstName" tabindex="2" id="primerNombreField" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edadField">Edad</label>
+                                        <input class="form-control inputAge" type="number" disabled name="age" min="1" tabindex="6" id="edadField" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="segundoNombreField">Segundo Nombre</label>
+                                        <input class="form-control" tabindex="3" id="segundoNombreField" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Fecha Nacimiento</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                             </div>
+                                            <input type="date" id="fechaNac" disabled class="form-control" name="date" />
+                                        </div>
+                                        @*<div class="input-group-append" data-target="#fechaC" id="btnDatePicker" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>*@
+                                    </div>
+
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" id="BtnNext">Siguiente</button>
+                        </div>
+                        <div id="infCont-part" class="content" role="tabpanel" aria-labelledby="infCont-part-trigger">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Celular</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" id="celularField" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Telefono</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                            </div>
+                                            <input autocomplete="off" class="form-control" id="telefonoField" data-inputmask='"mask": "(999) 999-9999"' data-mask />
                                         </div>
 
                                     </div>
                                 </div>
-                                <button class="btn btn-primary" id="BtnNext">Siguiente</button>
-                            </div>
-                            <div id="infCont-part" class="content" role="tabpanel" aria-labelledby="infCont-part-trigger">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Celular</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
-                                                </div>
-                                                <input type="text" class="form-control" id="celularField" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask />
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Correo</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Telefono</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                                </div>
-                                                <input autocomplete="off" class="form-control" id="telefonoField" data-inputmask='"mask": "(999) 999-9999"' data-mask />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Correo</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                                </div>
-                                                <input class="form-control" id="correoField" type="email" />
-                                            </div>
+                                            <input class="form-control" id="correoField" type="email" />
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary" id="BtnPre">Anterior</button>
-                                <button class="btn btn-primary" id="BtnNext2">Siguiente</button>
                             </div>
-                            <div id="infRes-part" class="content" role="tabpanel" aria-labelledby="infRes-part-trigger">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Departamento</label>
-                                            <select class="form-control"></select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Municipio</label>
-                                            <select class="form-control"></select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Barrio</label>
-                                            <input class="form-control" />
-                                        </div>
+                            <button class="btn btn-primary" id="BtnPre">Anterior</button>
+                            <button class="btn btn-primary" id="BtnNext2">Siguiente</button>
+                        </div>
+                        <div id="infRes-part" class="content" role="tabpanel" aria-labelledby="infRes-part-trigger">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Departamento</label>
+                                        <select class="form-control select2" id="selectDepartamentos"></select>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary" id="BtnPre2">Anterior</button>
-                                <button class="btn btn-primary" id="BtnSavePatient">Guardar</button>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Municipio</label>
+                                        <select class="form-control select2" id="selectMunicipios"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Barrio</label>
+                                        <input class="form-control" autocomplete="off" id="barrio" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Direccion</label>
+                                        <input class="form-control" autocomplete="off" id="direccion" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3"></div>
                             </div>
+                            <button class="btn btn-primary" id="BtnPre2">Anterior</button>
+                            <button class="btn btn-primary" role="button" type="button" id="BtnSavePatient">Guardar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</form>
+</div>
+
 
 

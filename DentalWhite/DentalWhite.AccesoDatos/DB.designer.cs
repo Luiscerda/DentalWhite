@@ -77,6 +77,62 @@ namespace DentalWhite.AccesoDatos
 				return this.GetTable<Vw_TipoDocumento>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Vw_Departamentos> Vw_Departamentos
+		{
+			get
+			{
+				return this.GetTable<Vw_Departamentos>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Vw_Municipios> Vw_Municipios
+		{
+			get
+			{
+				return this.GetTable<Vw_Municipios>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Vw_Paciente> Vw_Paciente
+		{
+			get
+			{
+				return this.GetTable<Vw_Paciente>();
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Add_Paciente")]
+		public ISingleResult<sp_Add_PacienteResult> sp_Add_Paciente(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodTipoDoc", DbType="NChar(10)")] string codTipoDoc, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="NVarChar(20)")] string identificacion, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrimerNombre", DbType="NVarChar(30)")] string primerNombre, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SegundoNombre", DbType="NVarChar(30)")] string segundoNombre, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrimerApellido", DbType="NVarChar(30)")] string primerApellido, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SegundoApellido", DbType="NVarChar(30)")] string segundoApellido, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Edad", DbType="Int")] System.Nullable<int> edad, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaNacimiento", DbType="DateTime")] System.Nullable<System.DateTime> fechaNacimiento, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Celular", DbType="NChar(10)")] string celular, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="NChar(10)")] string telefono, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="NVarChar(30)")] string correo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodDepartamento", DbType="NVarChar(10)")] string codDepartamento, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodMunicipio", DbType="Int")] System.Nullable<int> codMunicipio, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Barrio", DbType="NVarChar(30)")] string barrio, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="NVarChar(30)")] string direccion, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estado", DbType="Bit")] System.Nullable<bool> estado, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserReg", DbType="Int")] System.Nullable<int> userReg, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaReg", DbType="DateTime")] System.Nullable<System.DateTime> fechaReg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codTipoDoc, identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, edad, fechaNacimiento, celular, telefono, correo, codDepartamento, codMunicipio, barrio, direccion, estado, userReg, fechaReg);
+			return ((ISingleResult<sp_Add_PacienteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Add_Usuario")]
+		public ISingleResult<sp_Add_UsuarioResult> sp_Add_Usuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(30)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(30)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="NVarChar(30)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="NVarChar(30)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="NVarChar(30)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="NVarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodRol", DbType="NChar(10)")] string codRol, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Activo", DbType="Bit")] System.Nullable<bool> activo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(11)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaReg", DbType="DateTime")] System.Nullable<System.DateTime> fechaReg, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserReg", DbType="Int")] System.Nullable<int> userReg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, password, nombre, apellido, correo, telefono, codRol, activo, identificacion, fechaReg, userReg);
+			return ((ISingleResult<sp_Add_UsuarioResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Usuarios")]
@@ -416,6 +472,697 @@ namespace DentalWhite.AccesoDatos
 				if ((this._DescTipo != value))
 				{
 					this._DescTipo = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Departamentos")]
+	public partial class Vw_Departamentos
+	{
+		
+		private int _IdDepartamento;
+		
+		private string _CodDepartamento;
+		
+		private string _DescDepartamento;
+		
+		public Vw_Departamentos()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdDepartamento", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int IdDepartamento
+		{
+			get
+			{
+				return this._IdDepartamento;
+			}
+			set
+			{
+				if ((this._IdDepartamento != value))
+				{
+					this._IdDepartamento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodDepartamento", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string CodDepartamento
+		{
+			get
+			{
+				return this._CodDepartamento;
+			}
+			set
+			{
+				if ((this._CodDepartamento != value))
+				{
+					this._CodDepartamento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescDepartamento", DbType="VarChar(60) NOT NULL", CanBeNull=false)]
+		public string DescDepartamento
+		{
+			get
+			{
+				return this._DescDepartamento;
+			}
+			set
+			{
+				if ((this._DescDepartamento != value))
+				{
+					this._DescDepartamento = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Municipios")]
+	public partial class Vw_Municipios
+	{
+		
+		private int _IdMunicipio;
+		
+		private int _CodMunicipio;
+		
+		private string _DescMunicipio;
+		
+		private bool _Estado;
+		
+		private string _CodDepartamento;
+		
+		public Vw_Municipios()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdMunicipio", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int IdMunicipio
+		{
+			get
+			{
+				return this._IdMunicipio;
+			}
+			set
+			{
+				if ((this._IdMunicipio != value))
+				{
+					this._IdMunicipio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodMunicipio", DbType="Int NOT NULL")]
+		public int CodMunicipio
+		{
+			get
+			{
+				return this._CodMunicipio;
+			}
+			set
+			{
+				if ((this._CodMunicipio != value))
+				{
+					this._CodMunicipio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescMunicipio", DbType="VarChar(60) NOT NULL", CanBeNull=false)]
+		public string DescMunicipio
+		{
+			get
+			{
+				return this._DescMunicipio;
+			}
+			set
+			{
+				if ((this._DescMunicipio != value))
+				{
+					this._DescMunicipio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodDepartamento", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string CodDepartamento
+		{
+			get
+			{
+				return this._CodDepartamento;
+			}
+			set
+			{
+				if ((this._CodDepartamento != value))
+				{
+					this._CodDepartamento = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Paciente")]
+	public partial class Vw_Paciente
+	{
+		
+		private int _IdPaciente;
+		
+		private string _Identificacion;
+		
+		private string _PrimerNombe;
+		
+		private string _SegundoNombre;
+		
+		private string _PrimerApellido;
+		
+		private string _SegundoApellido;
+		
+		private int _Edad;
+		
+		private System.DateTime _FechaNacimiento;
+		
+		private string _Celular;
+		
+		private string _Telefono;
+		
+		private string _Correo;
+		
+		private string _CodDepartamento;
+		
+		private System.Nullable<int> _CodMunicipio;
+		
+		private string _Barrio;
+		
+		private string _Direccion;
+		
+		private bool _Estado;
+		
+		private int _UserReg;
+		
+		private System.DateTime _FechaReg;
+		
+		private System.Nullable<int> _UserMod;
+		
+		private System.Nullable<System.DateTime> _FechaMod;
+		
+		private string _CodTipoDoc;
+		
+		private string _DescTipo;
+		
+		private string _DescDepartamento;
+		
+		private string _DescMunicipio;
+		
+		private string _UserName;
+		
+		private string _Password;
+		
+		public Vw_Paciente()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdPaciente", DbType="Int NOT NULL")]
+		public int IdPaciente
+		{
+			get
+			{
+				return this._IdPaciente;
+			}
+			set
+			{
+				if ((this._IdPaciente != value))
+				{
+					this._IdPaciente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimerNombe", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string PrimerNombe
+		{
+			get
+			{
+				return this._PrimerNombe;
+			}
+			set
+			{
+				if ((this._PrimerNombe != value))
+				{
+					this._PrimerNombe = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SegundoNombre", DbType="NVarChar(30)")]
+		public string SegundoNombre
+		{
+			get
+			{
+				return this._SegundoNombre;
+			}
+			set
+			{
+				if ((this._SegundoNombre != value))
+				{
+					this._SegundoNombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimerApellido", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string PrimerApellido
+		{
+			get
+			{
+				return this._PrimerApellido;
+			}
+			set
+			{
+				if ((this._PrimerApellido != value))
+				{
+					this._PrimerApellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SegundoApellido", DbType="NVarChar(30)")]
+		public string SegundoApellido
+		{
+			get
+			{
+				return this._SegundoApellido;
+			}
+			set
+			{
+				if ((this._SegundoApellido != value))
+				{
+					this._SegundoApellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Edad", DbType="Int NOT NULL")]
+		public int Edad
+		{
+			get
+			{
+				return this._Edad;
+			}
+			set
+			{
+				if ((this._Edad != value))
+				{
+					this._Edad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaNacimiento", DbType="DateTime NOT NULL")]
+		public System.DateTime FechaNacimiento
+		{
+			get
+			{
+				return this._FechaNacimiento;
+			}
+			set
+			{
+				if ((this._FechaNacimiento != value))
+				{
+					this._FechaNacimiento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Celular", DbType="NChar(10)")]
+		public string Celular
+		{
+			get
+			{
+				return this._Celular;
+			}
+			set
+			{
+				if ((this._Celular != value))
+				{
+					this._Celular = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="NChar(10)")]
+		public string Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this._Telefono = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="NVarChar(30)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodDepartamento", DbType="NVarChar(10)")]
+		public string CodDepartamento
+		{
+			get
+			{
+				return this._CodDepartamento;
+			}
+			set
+			{
+				if ((this._CodDepartamento != value))
+				{
+					this._CodDepartamento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodMunicipio", DbType="Int")]
+		public System.Nullable<int> CodMunicipio
+		{
+			get
+			{
+				return this._CodMunicipio;
+			}
+			set
+			{
+				if ((this._CodMunicipio != value))
+				{
+					this._CodMunicipio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Barrio", DbType="NVarChar(30)")]
+		public string Barrio
+		{
+			get
+			{
+				return this._Barrio;
+			}
+			set
+			{
+				if ((this._Barrio != value))
+				{
+					this._Barrio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="NVarChar(30)")]
+		public string Direccion
+		{
+			get
+			{
+				return this._Direccion;
+			}
+			set
+			{
+				if ((this._Direccion != value))
+				{
+					this._Direccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserReg", DbType="Int NOT NULL")]
+		public int UserReg
+		{
+			get
+			{
+				return this._UserReg;
+			}
+			set
+			{
+				if ((this._UserReg != value))
+				{
+					this._UserReg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaReg", DbType="DateTime NOT NULL")]
+		public System.DateTime FechaReg
+		{
+			get
+			{
+				return this._FechaReg;
+			}
+			set
+			{
+				if ((this._FechaReg != value))
+				{
+					this._FechaReg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserMod", DbType="Int")]
+		public System.Nullable<int> UserMod
+		{
+			get
+			{
+				return this._UserMod;
+			}
+			set
+			{
+				if ((this._UserMod != value))
+				{
+					this._UserMod = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaMod", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaMod
+		{
+			get
+			{
+				return this._FechaMod;
+			}
+			set
+			{
+				if ((this._FechaMod != value))
+				{
+					this._FechaMod = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodTipoDoc", DbType="NChar(10)")]
+		public string CodTipoDoc
+		{
+			get
+			{
+				return this._CodTipoDoc;
+			}
+			set
+			{
+				if ((this._CodTipoDoc != value))
+				{
+					this._CodTipoDoc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescTipo", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string DescTipo
+		{
+			get
+			{
+				return this._DescTipo;
+			}
+			set
+			{
+				if ((this._DescTipo != value))
+				{
+					this._DescTipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescDepartamento", DbType="VarChar(60) NOT NULL", CanBeNull=false)]
+		public string DescDepartamento
+		{
+			get
+			{
+				return this._DescDepartamento;
+			}
+			set
+			{
+				if ((this._DescDepartamento != value))
+				{
+					this._DescDepartamento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescMunicipio", DbType="VarChar(60) NOT NULL", CanBeNull=false)]
+		public string DescMunicipio
+		{
+			get
+			{
+				return this._DescMunicipio;
+			}
+			set
+			{
+				if ((this._DescMunicipio != value))
+				{
+					this._DescMunicipio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this._UserName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this._Password = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_Add_PacienteResult
+	{
+		
+		private System.Nullable<decimal> _Id;
+		
+		public sp_Add_PacienteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Decimal(38,0)")]
+		public System.Nullable<decimal> Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_Add_UsuarioResult
+	{
+		
+		private System.Nullable<decimal> _Id;
+		
+		public sp_Add_UsuarioResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Decimal(38,0)")]
+		public System.Nullable<decimal> Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
 				}
 			}
 		}

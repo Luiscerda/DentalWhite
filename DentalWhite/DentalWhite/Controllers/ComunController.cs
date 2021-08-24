@@ -37,5 +37,45 @@ namespace DentalWhite.Controllers
             return Utilidades.ToJsonResult(result);
         }
 
+        [HttpPost]
+        [Route("Comun/GetDepartamentos")]
+        public JsonResult GetDepartamentos(Vw_Usuarios User)
+        {
+            Ajax_Data result = new Ajax_Data();
+            ComunModel comunModel = new ComunModel();
+            UsuarioModel Um = new UsuarioModel();
+            Vw_Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
+            if (UserValidate == null)
+            {
+                result.Is_Error = true;
+                result.Msj = "Credenciales incorrectas";
+                return Utilidades.ToJsonResult(result);
+            }
+            result.Objeto = comunModel.GetDepartamentos().OrderBy(c=>c.DescDepartamento);
+            result.Is_Error = false;
+
+            return Utilidades.ToJsonResult(result);
+        }
+
+        [HttpPost]
+        [Route("Comun/GetMunicipiosByCodDepartamento")]
+        public JsonResult GetMunicipiosByCodDepartamento(Vw_Usuarios User)
+        {
+            string codDepartamento = Request["CodDepar"];
+            Ajax_Data result = new Ajax_Data();
+            ComunModel model = new ComunModel();
+            UsuarioModel Um = new UsuarioModel();
+            Vw_Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
+            if (UserValidate == null)
+            {
+                result.Is_Error = true;
+                result.Msj = "Credenciales incorrectas";
+                return Utilidades.ToJsonResult(result);
+            }
+            result.Objeto = model.GetMunicipiosByCodDepartamento(codDepartamento).OrderBy(c=>c.DescMunicipio);
+            result.Is_Error = false;
+
+            return Utilidades.ToJsonResult(result);
+        }
     }
 }

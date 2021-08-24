@@ -18,5 +18,13 @@ namespace DentalWhite.Models
         {
             return datos.GetTipoDocumentos();
         }
+        public List<Vw_Departamentos> GetDepartamentos()
+        {
+            return datos.GetDepartamentos();
+        }
+        public List<Vw_Municipios> GetMunicipiosByCodDepartamento(string codDepartamento)
+        {
+            return datos.GetMunicipiosByCodDepartamento(codDepartamento);
+        }
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DentalWhite.AccesoDatos;
+using DentalWhite.Clases;
+using DentalWhite.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +15,38 @@ namespace DentalWhite.Controllers
         public ActionResult AddPatient()
         {
             return View();
+        }
+
+        [HttpPost]
+        [Route("Paciente/SavePaciente")]
+        public JsonResult SavePaciente(Vw_Paciente paciente)
+        {
+            Ajax_Data Retorno = new Ajax_Data();
+            PacienteModel pacienteModel = new PacienteModel();
+
+            Vw_Paciente pacienteConsultado = pacienteModel.GetPacienteByIdentificacion(paciente.Identificacion);
+            if (pacienteConsultado == null)
+            {
+                int resul = pacienteModel.Add_Paciente(paciente);
+                if (resul == -1)
+                {
+                    Retorno.Is_Error = true;
+                    Retorno.Msj = "Error";
+                }
+                else
+                {
+                    Retorno.Is_Error = false;
+                    Retorno.Msj = "Paciente registrado con exito";
+                }
+            }
+            else
+            {
+                Retorno.Is_Error = true;
+                Retorno.Msj = "El paciente que trata de registrar ya existe";
+            }
+
+
+            return Utilidades.ToJsonResult(Retorno);
         }
     }
 }
