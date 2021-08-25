@@ -111,4 +111,25 @@
       <Column Name="Id" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.sp_Upd_Paciente" Method="sp_Upd_Paciente">
+    <Parameter Name="Celular" Parameter="celular" Type="System.String" DbType="NChar(12)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="NChar(14)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="CodDepartamento" Parameter="codDepartamento" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="CodMunicipio" Parameter="codMunicipio" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Barrio" Parameter="barrio" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="UserMod" Parameter="userMod" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaMod" Parameter="fechaMod" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IdPaciente" Parameter="idPaciente" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Upd_Usuario" Method="sp_Upd_Usuario">
+    <Parameter Name="Celular" Parameter="celular" Type="System.String" DbType="NVarChar(15)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="UserMod" Parameter="userMod" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaMod" Parameter="fechaMod" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(11)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

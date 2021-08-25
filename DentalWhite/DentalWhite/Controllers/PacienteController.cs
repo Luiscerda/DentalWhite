@@ -80,5 +80,28 @@ namespace DentalWhite.Controllers
 
             return Utilidades.ToJsonResult(result);
         }
+
+        [HttpPost]
+        [Route("Paciente/UpdatePaciente")]
+        public JsonResult UpdatePaciente(Vw_Paciente paciente)
+        {
+            Ajax_Data Retorno = new Ajax_Data();
+            PacienteModel pacienteModel = new PacienteModel();
+
+            int resul = pacienteModel.UpdatePaciente(paciente);
+            if (resul == -1)
+            {
+                Retorno.Is_Error = true;
+                Retorno.Msj = "No se pudo modificar el paciente";
+            }
+            else
+            {
+                Retorno.Is_Error = false;
+                Retorno.Msj = "Paciente modificado con exito";
+            }
+
+
+            return Utilidades.ToJsonResult(Retorno);
+        }
     }
 }

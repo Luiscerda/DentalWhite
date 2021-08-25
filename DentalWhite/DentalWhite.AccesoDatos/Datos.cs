@@ -138,6 +138,41 @@ namespace DentalWhite.AccesoDatos
             Desconectar();
             return pacientes;
         }
+        public int UpdatePaciente(Vw_Paciente paciente)
+        {
+            int result = 0;
+            try
+            {
+                this.Conectar();
+                using (TransactionScope tran = new TransactionScope())
+                {
+                    try
+                    {
+                        Vw_Paciente _paciente = DB.Vw_Paciente.Where(c => c.Identificacion.Trim() == paciente.Identificacion.Trim()).FirstOrDefault();
+                        result = DB.sp_Upd_Paciente(paciente.Celular, paciente.Telefono, paciente.Correo, paciente.CodDepartamento,
+                            paciente.CodMunicipio, paciente.Barrio, paciente.Direccion, paciente.UserReg, DateTime.Now, _paciente.IdPaciente);
+                        int a = DB.sp_Upd_Usuario(paciente.Celular, paciente.Correo, paciente.UserReg, DateTime.Now, paciente.Identificacion);
+
+                        DB.SubmitChanges();
+                        tran.Complete();
+                        result = 1;
+                    }
+                    catch (Exception exe)
+                    {
+                        Transaction.Current.Rollback();
+                        WriteExceptionLog(exe);
+                        result = -1;
+                    }
+                }
+                Desconectar();
+            }
+            catch (Exception ex)
+            {
+                result = -1;
+                WriteExceptionLog(ex);
+            }
+            return result;
+        }
         #endregion
     }
 }

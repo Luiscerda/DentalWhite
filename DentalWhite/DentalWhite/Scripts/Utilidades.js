@@ -33,13 +33,11 @@ function ShowError(error) {
 
 function SwalErrorMsj(data) {
     CloseModalBox();
-    swal.fire({
-        title: "¡Error!",
-        text: data.Msj,
-        //confirmButtonColor: "#ab2328",
-        type: "error",
-        closeOnConfirm: true,
-    });
+    Swal.fire(
+        'error',
+        'Mensaje',
+        data.Msj,
+    );
 }
 
 function CloseModalBox() {

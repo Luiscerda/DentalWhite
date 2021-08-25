@@ -133,6 +133,20 @@ namespace DentalWhite.AccesoDatos
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, password, nombre, apellido, correo, telefono, codRol, activo, identificacion, fechaReg, userReg);
 			return ((ISingleResult<sp_Add_UsuarioResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Upd_Paciente")]
+		public int sp_Upd_Paciente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Celular", DbType="NChar(12)")] string celular, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="NChar(14)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="NVarChar(30)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodDepartamento", DbType="NVarChar(10)")] string codDepartamento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodMunicipio", DbType="Int")] System.Nullable<int> codMunicipio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Barrio", DbType="NVarChar(30)")] string barrio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="NVarChar(30)")] string direccion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserMod", DbType="Int")] System.Nullable<int> userMod, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaMod", DbType="DateTime")] System.Nullable<System.DateTime> fechaMod, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdPaciente", DbType="Int")] System.Nullable<int> idPaciente)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), celular, telefono, correo, codDepartamento, codMunicipio, barrio, direccion, userMod, fechaMod, idPaciente);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Upd_Usuario")]
+		public int sp_Upd_Usuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Celular", DbType="NVarChar(15)")] string celular, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="NVarChar(30)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserMod", DbType="Int")] System.Nullable<int> userMod, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaMod", DbType="DateTime")] System.Nullable<System.DateTime> fechaMod, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(11)")] string identificacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), celular, correo, userMod, fechaMod, identificacion);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Usuarios")]

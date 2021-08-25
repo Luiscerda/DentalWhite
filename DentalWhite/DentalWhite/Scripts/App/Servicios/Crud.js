@@ -52,26 +52,19 @@ function Save_DataPost(callbacksussces, Url, ObjPost, TituloMsj, EnvioDesdeModal
                 if (!data.Is_Error) {
                     if (EnvioDesdeModal) {
 
-                        Swal.fire({
-                            icon: 'success',
-                            title: TituloMsj,
-                            text: data.Msj,
-
-                        });
+                        Swal.fire(
+                            'Exito!',
+                            data.Msj,
+                            'success'
+                        );
 
                     }
                     else {
-                        Swal.fire({
-                            icon: 'success',
-                            title: TituloMsj,
-                            text: data.Msj,
-
-                        },
-                            function (isConfirm) {
-                                if (isConfirm) {
-                                    window.location.reload(true);
-                                }
-                            });
+                        Swal.fire(
+                            TituloMsj,
+                            data.Msj,
+                            'success'
+                        );
                     }
                     callbacksussces(data)
                 } else {

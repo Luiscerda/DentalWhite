@@ -26,5 +26,9 @@ namespace DentalWhite.Models
         {
             return datos.GetPacientes();
         }
+        public int UpdatePaciente(Vw_Paciente paciente)
+        {
+            return datos.UpdatePaciente(paciente);
+        }
     }
 }
