@@ -131,6 +131,13 @@ namespace DentalWhite.AccesoDatos
             Desconectar();
             return paciente;
         }
+        public List<Vw_Paciente> GetPacientes()
+        {
+            Conectar();
+            List<Vw_Paciente> pacientes = DB.Vw_Paciente.ToList();
+            Desconectar();
+            return pacientes;
+        }
         #endregion
     }
 }

@@ -16,6 +16,10 @@ namespace DentalWhite.Controllers
         {
             return View();
         }
+        public ActionResult GetPatients()
+        {
+            return View();
+        }
 
         [HttpPost]
         [Route("Paciente/SavePaciente")]
@@ -47,6 +51,34 @@ namespace DentalWhite.Controllers
 
 
             return Utilidades.ToJsonResult(Retorno);
+        }
+
+        [HttpPost]
+        [Route("Paciente/GetPacientes")]
+        public JsonResult GetPacientes(Vw_Usuarios User)
+        {
+            Ajax_Data result = new Ajax_Data();
+            PacienteModel pacienteModel = new PacienteModel();
+            UsuarioModel Um = new UsuarioModel();
+            Vw_Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
+            if (UserValidate == null)
+            {
+                result.Is_Error = true;
+                result.Msj = "Credenciales incorrectas";
+                return Utilidades.ToJsonResult(result);
+            }
+            List<Vw_Paciente> pacientes = pacienteModel.GetPacientes();
+            pacientes.ForEach(w =>
+            {
+                w.SegundoNombre = string.IsNullOrEmpty(w.SegundoNombre) ? "" : w.SegundoNombre;
+                w.PrimerNombe = w.PrimerNombe + " " + w.SegundoNombre;
+                w.SegundoApellido = string.IsNullOrEmpty(w.SegundoApellido) ? "" : w.SegundoApellido;
+                w.PrimerApellido = w.PrimerApellido + " " + w.SegundoApellido;
+            });
+            result.Objeto = pacientes;
+            result.Is_Error = false;
+
+            return Utilidades.ToJsonResult(result);
         }
     }
 }

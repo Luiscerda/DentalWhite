@@ -1,12 +1,13 @@
 ﻿var ObjetoGuardarPaciente = {};
 var user;
+var stepper;
 $(document).ready(function () {
     hideElementSpan();
     validation();
     user = getCookieGeneral('UsuarioDW');
     user = JSON.parse(Base64.decode(user));
     GuardarPacienteClick();
-    var stepper = new Stepper($('.bs-stepper')[0])
+    stepper = new Stepper($('.bs-stepper')[0])
     
     $("#BtnNext").on("click", function (event) {
         stepper.next();
@@ -17,8 +18,37 @@ $(document).ready(function () {
         event.preventDefault();
     });
     $("#BtnNext2").on("click", function (event) {
-        stepper.next();
-        event.preventDefault();
+        var celular = $("#celularField").val();
+        var correo = $("#correoField").val();
+        if (celular == "") {
+            highLight('input[name=celularField]')
+            $("#inputCelError").show();
+        } else {
+            celular = celular.trim().replace('-', '');
+            celular = celular.trim().replace('-', '');
+            if (celular.includes('_')) {
+                $("#inputCelError").show();
+            } else {
+                $("#inputCelError2").hide();
+                if (correo == "") {
+                    highLight('input[name=correoField]');
+                    $("#inputCorreoError").show();
+                } else {
+                    if (!correo.includes('@')) {
+                        $("#inputCorreoError").hide();
+                        $("#inputCorreoError2").show();
+                    } else {
+                        $("#inputCorreoError2").hide();
+                        stepper.next();
+                        event.preventDefault();
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
     });
     $("#BtnPre2").on("click", function (event) {
         stepper.previous()
@@ -58,7 +88,15 @@ function unhighlight(element) {
 }
 function hideElementSpan() {
     $("#inputIdError").hide();
+    $("#inputCelError").hide();
+    $("#inputCelError2").hide();
+    $("#inputCorreoError").hide();
+    $("#inputCorreoError2").hide();
     $('#BtnNext').addClass('disabled').prop('disabled', true);
+    $('input[name=firstName]').prop('disabled', true);
+    $('input[name=lastName]').prop('disabled', true);
+    $('input[name=age]').prop('disabled', true);
+    $('input[name=date]').prop('disabled', true);
 }
 function GetDepartamentos(data) {
     var ArrayDepartamentos = data.Objeto;
@@ -74,7 +112,13 @@ function validation() {
 
         var input1 = $('.inputId').val();
 
-        if (input1.length > 7) {
+        if (input1.length == 0) {
+            $('input[name=firstName]').prop('disabled', true);
+            unhighlight('input[name=identification]');
+            $("#inputIdError").hide();
+            $("#inputLastError").hide();
+        }
+        else if (input1.length > 7) {
             $('input[name=firstName]').removeAttr('style').removeAttr('disabled');
             unhighlight('input[name=identification]');
             $("#inputIdError").hide();
@@ -129,6 +173,36 @@ function validation() {
         var input2 = $('#fechaNac').val();
         $('#BtnNext').removeClass('disabled').removeAttr('disabled');
     });
+    $("#identificacionField").on("keypress", function () {
+        return soloNumeros(event);
+    });
+    $('input[name=celularField]').on('keyup', () => {
+
+        var input2 = $('.celular').val();
+        input2 = input2.trim().replace('-', '');
+        input2 = input2.trim().replace('-', '');
+        if (input2.includes('_')) {
+            highLight('input[name=celularField]');
+            $("#inputCelError").hide();
+            $("#inputCelError2").show();
+        } else {
+            unhighlight('input[name=celularField]');
+            $("#inputCelError2").hide();
+        }
+
+    });
+    $('input[name=correoField]').on('keyup', () => {
+
+        var input2 = $('.correo').val();
+        if (!input2.includes('@')) {
+            highLight('input[name=correoField]');            
+            $("#inputCorreoError2").show();
+        } else {
+            unhighlight('input[name=correoField]');
+            $("#inputCorreoError2").hide();
+        }
+
+    });
 }
 function GetMunicipios(data) {
     var ArrayMunicipios = data.Objeto;
@@ -154,21 +228,47 @@ function GuardarPacienteClick() {
 }
 
 function GuardarPaciente(data) {
-    CloseLoading();
     if (data.Is_Error) {
-        swal.fire({
+        Swal.fire({
             icon: 'error',
             title: 'Atención',
             text: data.Msj,
         });
         ObjetoGuardarPaciente = {};
     } else {
-
-        swal.fire({
+        Swal.fire({
             icon: 'success',
             title: "Atención",
             text: data.Msj,
         })
         ObjetoGuardarPaciente = {};
+        limpiarCampos();
     }
+}
+function soloNumeros(evt) {
+    var code = (evt.which) ? evt.which : evt.keyCode;
+    if (code == 8) {
+        return true;
+    } else if (code >= 48 && code <= 57) {
+        return true;
+    } else {
+        return false
+    }
+}
+function limpiarCampos() {
+    stepper.to(1);
+    $("#identificacionField").val('');
+    $("#primerNombreField").val('');
+    $("#segundoNombreField").val('');
+    $("#primerApellidoField").val('');
+    $("#segundoApellidoField").val('');
+    $("#edadField").val('');
+    $('#fechaNac').val('');
+    $("#celularField").val('');
+    $("#telefonoField").val('');
+    $("#correoField").val('');
+    $("#barrio").val('');
+    $("#direccion").val('');
+    
+    hideElementSpan();
 }

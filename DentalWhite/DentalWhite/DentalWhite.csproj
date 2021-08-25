@@ -211,6 +211,32 @@
     <Content Include="Content\plugins\chart.js\Chart.js" />
     <Content Include="Content\plugins\chart.js\Chart.min.css" />
     <Content Include="Content\plugins\chart.js\Chart.min.js" />
+    <Content Include="Content\plugins\datatables-bs4\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\plugins\datatables-bs4\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\plugins\datatables-bs4\js\dataTables.bootstrap4.js" />
+    <Content Include="Content\plugins\datatables-bs4\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\plugins\datatables-buttons\css\buttons.bootstrap4.css" />
+    <Content Include="Content\plugins\datatables-buttons\css\buttons.bootstrap4.min.css" />
+    <Content Include="Content\plugins\datatables-buttons\js\buttons.bootstrap4.js" />
+    <Content Include="Content\plugins\datatables-buttons\js\buttons.bootstrap4.min.js" />
+    <Content Include="Content\plugins\datatables-buttons\js\buttons.colVis.js" />
+    <Content Include="Content\plugins\datatables-buttons\js\buttons.colVis.min.js" />
+    <Content Include="Content\plugins\datatables-buttons\js\buttons.flash.js" />
+    <Content Include="Content\plugins\datatables-buttons\js\buttons.flash.min.js" />
+    <Content Include="Content\plugins\datatables-buttons\js\buttons.html5.js" />
+    <Content Include="Content\plugins\datatables-buttons\js\buttons.html5.min.js" />
+    <Content Include="Content\plugins\datatables-buttons\js\buttons.print.js" />
+    <Content Include="Content\plugins\datatables-buttons\js\buttons.print.min.js" />
+    <Content Include="Content\plugins\datatables-buttons\js\dataTables.buttons.js" />
+    <Content Include="Content\plugins\datatables-buttons\js\dataTables.buttons.min.js" />
+    <Content Include="Content\plugins\datatables-responsive\css\responsive.bootstrap4.css" />
+    <Content Include="Content\plugins\datatables-responsive\css\responsive.bootstrap4.min.css" />
+    <Content Include="Content\plugins\datatables-responsive\js\dataTables.responsive.js" />
+    <Content Include="Content\plugins\datatables-responsive\js\dataTables.responsive.min.js" />
+    <Content Include="Content\plugins\datatables-responsive\js\responsive.bootstrap4.js" />
+    <Content Include="Content\plugins\datatables-responsive\js\responsive.bootstrap4.min.js" />
+    <Content Include="Content\plugins\datatables\jquery.dataTables.js" />
+    <Content Include="Content\plugins\datatables\jquery.dataTables.min.js" />
     <Content Include="Content\plugins\daterangepicker\daterangepicker.css" />
     <Content Include="Content\plugins\daterangepicker\daterangepicker.js" />
     <Content Include="Content\plugins\fontawesome-free\css\all.css" />
@@ -416,6 +442,8 @@
     <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.usa.districts.js" />
     <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.usa.js" />
     <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.world.js" />
+    <Content Include="Content\plugins\jszip\jszip.js" />
+    <Content Include="Content\plugins\jszip\jszip.min.js" />
     <Content Include="Content\plugins\moment\locales.js" />
     <Content Include="Content\plugins\moment\locales.min.js" />
     <Content Include="Content\plugins\moment\locale\af.js" />
@@ -562,6 +590,9 @@
     <Content Include="Content\plugins\overlayScrollbars\js\jquery.overlayScrollbars.min.js" />
     <Content Include="Content\plugins\overlayScrollbars\js\OverlayScrollbars.js" />
     <Content Include="Content\plugins\overlayScrollbars\js\OverlayScrollbars.min.js" />
+    <Content Include="Content\plugins\pdfmake\pdfmake.js" />
+    <Content Include="Content\plugins\pdfmake\pdfmake.min.js" />
+    <Content Include="Content\plugins\pdfmake\vfs_fonts.js" />
     <Content Include="Content\plugins\select2-bootstrap4-theme\select2-bootstrap4.css" />
     <Content Include="Content\plugins\select2-bootstrap4-theme\select2-bootstrap4.min.css" />
     <Content Include="Content\plugins\select2\css\select2.css" />
@@ -793,6 +824,7 @@
     <Content Include="Scripts\App\Login\DataUser.js" />
     <Content Include="Scripts\App\Login\Login.js" />
     <Content Include="Scripts\App\Paciente\AddPaciente.js" />
+    <Content Include="Scripts\App\Paciente\GetPacientes.js" />
     <Content Include="Scripts\Utilidades.js" />
     <Content Include="Scripts\Base64.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -868,6 +900,8 @@
     <Content Include="Content\plugins\bs-stepper\css\bs-stepper.min.css.map" />
     <Content Include="Content\plugins\bs-stepper\js\bs-stepper.js.map" />
     <Content Include="Content\plugins\bs-stepper\js\bs-stepper.min.js.map" />
+    <Content Include="Content\plugins\pdfmake\pdfmake.js.map" />
+    <Content Include="Content\plugins\pdfmake\pdfmake.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\App\Servicios\Crud.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -892,6 +926,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Paciente\AddPatient.cshtml" />
+    <Content Include="Views\Paciente\GetPatients.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

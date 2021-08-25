@@ -22,5 +22,9 @@ namespace DentalWhite.Models
         {
             return datos.GetPacienteByIdentificacion(identificacion);
         }
+        public List<Vw_Paciente> GetPacientes()
+        {
+            return datos.GetPacientes();
+        }
     }
 }

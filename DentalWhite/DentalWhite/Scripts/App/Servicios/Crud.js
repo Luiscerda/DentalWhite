@@ -52,7 +52,7 @@ function Save_DataPost(callbacksussces, Url, ObjPost, TituloMsj, EnvioDesdeModal
                 if (!data.Is_Error) {
                     if (EnvioDesdeModal) {
 
-                        swal.fire({
+                        Swal.fire({
                             icon: 'success',
                             title: TituloMsj,
                             text: data.Msj,
@@ -61,7 +61,7 @@ function Save_DataPost(callbacksussces, Url, ObjPost, TituloMsj, EnvioDesdeModal
 
                     }
                     else {
-                        swal.fire({
+                        Swal.fire({
                             icon: 'success',
                             title: TituloMsj,
                             text: data.Msj,
