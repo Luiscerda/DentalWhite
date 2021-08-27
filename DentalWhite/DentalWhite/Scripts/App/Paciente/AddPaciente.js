@@ -1,11 +1,8 @@
 ﻿var ObjetoGuardarPaciente = {};
-var user;
 var stepper;
 $(document).ready(function () {
     hideElementSpan();
     validation();
-    user = getCookieGeneral('UsuarioDW');
-    user = JSON.parse(Base64.decode(user));
     GuardarPacienteClick();
     stepper = new Stepper($('.bs-stepper')[0])
     
@@ -80,12 +77,6 @@ function GetTipoDocumentos(data) {
     $('#selectTipoId').html(htmlTipo);
 }
 
-function highLight(element) {
-    $(element).addClass('is-invalid');
-}
-function unhighlight(element) {
-    $(element).removeClass('is-invalid');
-}
 function hideElementSpan() {
     $("#inputIdError").hide();
     $("#inputCelError").hide();
@@ -98,6 +89,7 @@ function hideElementSpan() {
     $('input[name=age]').prop('disabled', true);
     $('input[name=date]').prop('disabled', true);
 }
+
 function GetDepartamentos(data) {
     var ArrayDepartamentos = data.Objeto;
     var htmlDepartamentos = "";
@@ -221,7 +213,7 @@ function GuardarPacienteClick() {
             SegundoNombre: $("#segundoNombreField").val(), PrimerApellido: $("#primerApellidoField").val(), SegundoApellido: $("#segundoApellidoField").val(),
             Edad: $("#edadField").val(), FechaNacimiento: $('#fechaNac').val(), Celular: $("#celularField").val(), Telefono: $("#telefonoField").val(),
             Correo: $("#correoField").val(), CodDepartamento: $("#selectDepartamentos").val(), CodMunicipio: $("#selectMunicipios").val(),
-            Barrio: $("#barrio").val(), Direccion: $("#direccion").val(), UserReg: user.UserId
+            Barrio: $("#barrio").val(), Direccion: $("#direccion").val(), UserReg: userGlobal.UserId
         }
         Save_DataPost(GuardarPaciente, '/Paciente/SavePaciente', ObjetoGuardarPaciente)
     });
@@ -229,18 +221,18 @@ function GuardarPacienteClick() {
 
 function GuardarPaciente(data) {
     if (data.Is_Error) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Atención',
-            text: data.Msj,
-        });
+        Swal.fire(
+            'error',
+            'Mensaje',
+            data.Msj,
+        );
         ObjetoGuardarPaciente = {};
     } else {
-        Swal.fire({
-            icon: 'success',
-            title: "Atención",
-            text: data.Msj,
-        })
+        Swal.fire(
+            'Exito!',
+            data.Msj,
+            'success'
+        );
         ObjetoGuardarPaciente = {};
         limpiarCampos();
     }

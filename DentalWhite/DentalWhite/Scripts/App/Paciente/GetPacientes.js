@@ -1,14 +1,5 @@
-﻿var userUpd;
-$(document).ready(function () {
+﻿$(document).ready(function () {
     hideElementSpanUpd();
-    userUpd = getCookieGeneral('UsuarioDW');
-    userupd = JSON.parse(Base64.decode(userUpd));
-    //var Toast = Swal.fire({
-    //    toast: true,
-    //    position: 'center',
-    //    showConfirmButton: true,
-    //    timer: 3000
-    //});
     $("#tablePacientes").DataTable({
         "responsive": true,
         "lengthChange": false,
@@ -30,17 +21,17 @@ $(document).ready(function () {
         var celular = $("#celularFieldUpdt").val();
         var correo = $("#correoFieldUpd").val();
         if (celular == "") {
-            highLightUpd('input[name=celularFieldUpdt]')
+            highLight('input[name=celularFieldUpdt]')
             $("#inputCelUpdError").show();
         } else {
             celular = celular.trim().replace('-', '');
             celular = celular.trim().replace('-', '');
             if (celular.includes('_')) {
-                highLightUpd('input[name=celularFieldUpdt]');
+                highLight('input[name=celularFieldUpdt]');
                 $("#inputCelUpdError2").show();
             } else {
                 if (correo == "") {
-                    highLightUpd('input[name=correoFieldUpd]')
+                    highLight('input[name=correoFieldUpd]')
                     $("#inputCorreoUpdError").show();
                 } else {
                     if (!correo.includes('@')) {
@@ -51,7 +42,7 @@ $(document).ready(function () {
                         var objetoModificarPaciente = {
                             Identificacion: $("#identificacionUpdate").val(), Celular: $("#celularFieldUpdt").val(), Telefono: $("#telefonoFieldUpd").val(),
                             Correo: $("#correoFieldUpd").val(), CodDepartamento: $("#selectDepartamentosUpd").val(), CodMunicipio: $("#selectMunicipiosUpd").val(),
-                            Barrio: $("#barrioUpd").val(), Direccion: $("#direccionUpd").val(), UserReg: userUpd.UserId
+                            Barrio: $("#barrioUpd").val(), Direccion: $("#direccionUpd").val(), UserReg: userGlobal.UserId
                         }
                         Save_DataPost(ModificarPaciente, '/Paciente/UpdatePaciente', objetoModificarPaciente)
                     }
@@ -65,11 +56,11 @@ $(document).ready(function () {
         input2 = input2.trim().replace('-', '');
         input2 = input2.trim().replace('-', '');
         if (input2.includes('_')) {
-            highLightUpd('input[name=celularFieldUpdt]');
+            highLight('input[name=celularFieldUpdt]');
             $("#inputCelUpdError").hide();
             $("#inputCelUpdError2").show();
         } else {
-            unhighlightUpd('input[name=celularFieldUpdt]');
+            unhighlight('input[name=celularFieldUpdt]');
             $("#inputCelUpdError2").hide();
         }
 
@@ -78,22 +69,17 @@ $(document).ready(function () {
 
         var input2 = $('.correoUpd').val();
         if (!input2.includes('@')) {
-            highLightUpd('input[name=correoFieldUpd]');
+            highLight('input[name=correoFieldUpd]');
             $("#inputCorreoUpdError").hide();
             $("#inputCorreoUpdError2").show();
         } else {
-            unhighlightUpd('input[name=correoFieldUpd]');
+            unhighlight('input[name=correoFieldUpd]');
             $("#inputCorreoUpdError2").hide();
         }
 
     });
 });
-function highLightUpd(element) {
-    $(element).addClass('is-invalid');
-}
-function unhighlightUpd(element) {
-    $(element).removeClass('is-invalid');
-}
+
 function GetDepartamentosUpd(data) {
     var ArrayDepartamentos = data.Objeto;
     var htmlDepartamentos = "";
@@ -138,7 +124,7 @@ function GetPacientes(data) {
             $("#celularFieldUpdt").val(item.Celular);
             $("#telefonoFieldUpd").val(item.Telefono);
             $("#correoFieldUpd").val(item.Correo);
-            $("#selectDepartamentosUpd").val(item.CodDepartamento.trim()).trigger('change');
+            $("#selectDepartamentosUpd").val(item.CodDepartamento).trigger('change');
             $("#selectMunicipiosUpd").val(item.CodMunicipio).trigger('change');
             $("#barrioUpd").val(item.Barrio);
             $("#direccionUpd").val(item.Direccion);

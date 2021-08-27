@@ -157,7 +157,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Clases\Ajax_Data.cs" />
     <Compile Include="Clases\Utilidades.cs" />
+    <Compile Include="Controllers\CitaController.cs" />
     <Compile Include="Controllers\ComunController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
@@ -166,6 +168,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ComunModel.cs" />
+    <Compile Include="Models\DoctorModel.cs" />
     <Compile Include="Models\PacienteModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -829,6 +832,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\App\Doctor\AddDoctor.js" />
+    <Content Include="Scripts\App\Doctor\GetDoctor.js" />
     <Content Include="Scripts\App\Login\DataUser.js" />
     <Content Include="Scripts\App\Login\Login.js" />
     <Content Include="Scripts\App\Paciente\AddPaciente.js" />
@@ -935,9 +940,13 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Paciente\AddPatient.cshtml" />
     <Content Include="Views\Paciente\GetPatients.cshtml" />
+    <Content Include="Views\Doctor\AddDoctor.cshtml" />
+    <Content Include="Views\Cita\Asignar.cshtml" />
+    <Content Include="Views\Doctor\GetDoctor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\App\Cita\" />
     <Folder Include="Views\Comun\" />
   </ItemGroup>
   <ItemGroup>

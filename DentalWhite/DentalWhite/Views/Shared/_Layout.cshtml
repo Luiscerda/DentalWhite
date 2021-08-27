@@ -103,6 +103,46 @@ else
                                 </ul>
                             </li>
                             <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-hospital-user"></i>
+                                    <p>Doctores <i class="right fas fa-angle-left"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("AddDoctor","Doctor")' class="nav-link">
+                                            <i class="fas fa-user-plus"></i>
+                                            <p>Registrar</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("GetDoctor","Doctor")' class="nav-link">
+                                            <i class="fas fa-list"></i>
+                                            <p>Consultar</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-file-medical"></i>
+                                    <p>Citas <i class="right fas fa-angle-left"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Asignar","Cita")' class="nav-link">
+                                            <i class="fas fa-address-book"></i>
+                                            <p>Asignar</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="fas fa-list"></i>
+                                            <p>Consultar</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
                                 <a id="cerrarSesion" class="nav-link" style="cursor:pointer">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>
                                     <p>Cerrar sesion</p>

@@ -72,6 +72,36 @@
       <Column Name="Password" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.Vw_Doctor" Member="Vw_Doctor">
+    <Type Name="Vw_Doctor">
+      <Column Name="Identificacion" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PrimerNombe" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="SegundoNombre" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="PrimerApellido" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="SegundoApellido" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Edad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FechaNacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Celular" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="CodDepartamento" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="CodMunicipio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Barrio" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="UserReg" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FechaReg" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserMod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="DescDepartamento" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DescMunicipio" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="CodTipoDoc" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DescTipo" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="IdDoctor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.sp_Add_Paciente" Method="sp_Add_Paciente">
     <Parameter Name="CodTipoDoc" Parameter="codTipoDoc" Type="System.String" DbType="NChar(10)" />
     <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="NVarChar(20)" />
@@ -130,6 +160,42 @@
     <Parameter Name="UserMod" Parameter="userMod" Type="System.Int32" DbType="Int" />
     <Parameter Name="FechaMod" Parameter="fechaMod" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(11)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Add_Doctor" Method="sp_Add_Doctor">
+    <Parameter Name="CodTipoDoc" Parameter="codTipoDoc" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PrimerNombre" Parameter="primerNombre" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="SegundoNombre" Parameter="segundoNombre" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="PrimerApellido" Parameter="primerApellido" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="SegundoApellido" Parameter="segundoApellido" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="Edad" Parameter="edad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaNacimiento" Parameter="fechaNacimiento" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Celular" Parameter="celular" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="CodDepartamento" Parameter="codDepartamento" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="CodMunicipio" Parameter="codMunicipio" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Barrio" Parameter="barrio" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="Estado" Parameter="estado" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="UserReg" Parameter="userReg" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaReg" Parameter="fechaReg" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="sp_Add_DoctorResult">
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Upd_Doctor" Method="sp_Upd_Doctor">
+    <Parameter Name="Celular" Parameter="celular" Type="System.String" DbType="NChar(12)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="NChar(14)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="CodDepartamento" Parameter="codDepartamento" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="CodMunicipio" Parameter="codMunicipio" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Barrio" Parameter="barrio" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="UserMod" Parameter="userMod" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaMod" Parameter="fechaMod" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IdDoctor" Parameter="idDoctor" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

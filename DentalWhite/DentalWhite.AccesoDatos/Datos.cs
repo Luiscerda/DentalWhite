@@ -174,5 +174,91 @@ namespace DentalWhite.AccesoDatos
             return result;
         }
         #endregion
+
+        #region Doctor
+        public int Add_Doctor(Vw_Doctor doctor)
+        {
+            int result = 0;
+            try
+            {
+                this.Conectar();
+                using (TransactionScope tran = CreateTransactionScope(TimeSpan.FromMinutes(1800)))
+                {
+                    try
+                    {
+                        int a = (int)DB.sp_Add_Doctor(doctor.CodTipoDoc, doctor.Identificacion, doctor.PrimerNombe, doctor.SegundoNombre,
+                            doctor.PrimerApellido, doctor.SegundoApellido, doctor.Edad, doctor.FechaNacimiento, doctor.Celular, doctor.Telefono,
+                            doctor.Correo, doctor.CodDepartamento, doctor.CodMunicipio, doctor.Barrio, doctor.Direccion, true, doctor.UserReg, DateTime.Now).FirstOrDefault().Id;
+
+
+                        DB.SubmitChanges();
+                        tran.Complete();
+                        result = 1;
+                    }
+                    catch (Exception exe)
+                    {
+                        Transaction.Current.Rollback();
+                        WriteExceptionLog(exe);
+                        result = -1;
+                    }
+                }
+                Desconectar();
+            }
+            catch (Exception ex)
+            {
+                result = -1;
+                WriteExceptionLog(ex);
+            }
+            return result;
+        }
+        public Vw_Doctor GetDoctorByIdentificacion(string identificacion)
+        {
+            Conectar();
+            Vw_Doctor doctor = DB.Vw_Doctor.Where(c => c.Identificacion.Trim() == identificacion.Trim()).FirstOrDefault();
+            Desconectar();
+            return doctor;
+        }
+        public List<Vw_Doctor> GetDoctores()
+        {
+            Conectar();
+            List<Vw_Doctor> doctores = DB.Vw_Doctor.ToList();
+            Desconectar();
+            return doctores;
+        }
+        public int UpdateDoctor(Vw_Doctor doctor)
+        {
+            int result = 0;
+            try
+            {
+                this.Conectar();
+                using (TransactionScope tran = new TransactionScope())
+                {
+                    try
+                    {
+                        Vw_Doctor _doctor = DB.Vw_Doctor.Where(c => c.Identificacion.Trim() == doctor.Identificacion.Trim()).FirstOrDefault();
+                        result = DB.sp_Upd_Doctor(doctor.Celular, doctor.Telefono, doctor.Correo, doctor.CodDepartamento,
+                            doctor.CodMunicipio, doctor.Barrio, doctor.Direccion, doctor.UserReg, DateTime.Now, _doctor.IdDoctor);
+
+                        DB.SubmitChanges();
+                        tran.Complete();
+                        result = 1;
+                    }
+                    catch (Exception exe)
+                    {
+                        Transaction.Current.Rollback();
+                        WriteExceptionLog(exe);
+                        result = -1;
+                    }
+                }
+                Desconectar();
+            }
+            catch (Exception ex)
+            {
+                result = -1;
+                WriteExceptionLog(ex);
+            }
+            return result;
+        }
+        #endregion
     }
 }

@@ -1,0 +1,127 @@
+﻿<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script src="~/Scripts/App/Doctor/GetDoctor.js"></script>
+@{
+    ViewBag.Title = "GetDoctor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .labelError {
+        color: #dc3545;
+        font-size: 80%;
+        margin-top: .25rem;
+        width: 100%;
+    }
+</style>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Listado</h3>
+            </div>
+            <div class="card-body">
+                <table id="tableDoctores" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Identificacion</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Edad</th>
+                            <th>Celular</th>
+                            <th>Correo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalUpdateDoctor">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modificar doctor</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Identificacion</label>
+                            <input class="form-control" id="identificacionUpdate" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <label>Nombres y Apellidos</label>
+                        <input class="form-control" id="nombreUpdate" disabled />
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Celular</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                </div>
+                                <input type="text" class="form-control celularUpd" id="celularFieldUpdt" name="celularFieldUpdt" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask />
+                                <span id="inputCelUpdError" class="labelError">Campo obligatorio</span>
+                                <span id="inputCelUpdError2" class="labelError">Numero demaciado corto</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Departamento</label>
+                            <select class="form-control select2" id="selectDepartamentosUpd"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Telefono</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input autocomplete="off" class="form-control" id="telefonoFieldUpd" data-inputmask='"mask": "(999) 999-9999"' data-mask />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Municipio</label>
+                            <select class="form-control select2" id="selectMunicipiosUpd"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Correo</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                </div>
+                                <input class="form-control correoUpd" id="correoFieldUpd" name="correoFieldUpd" type="email" />
+                                <span id="inputCorreoUpdError" class="labelError">Campo obligatorio</span>
+                                <span id="inputCorreoUpdError2" class="labelError">Ingrese un correo valido</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Barrio</label>
+                            <input class="form-control" autocomplete="off" id="barrioUpd" />
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Direccion</label>
+                            <input class="form-control" autocomplete="off" id="direccionUpd" />
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="BtnModificarPaciente">Modificar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

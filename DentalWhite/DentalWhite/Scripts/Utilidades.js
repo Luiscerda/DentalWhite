@@ -1,4 +1,10 @@
-﻿function SetUrlForQuery(stringrelativeserver) {
+﻿var userGlobal;
+$(document).ready(function () {
+    userGlobal = getCookieGeneral('UsuarioDW');
+    userGlobal = JSON.parse(Base64.decode(userGlobal));
+
+});
+function SetUrlForQuery(stringrelativeserver) {
 
     return window.location.origin + stringrelativeserver;
 }
@@ -26,11 +32,15 @@ function getCookieGeneral(cname) {
 function deleteCookie(name) {
     setCookieGeneral(name, "", -1);
 }
-
+function highLight(element) {
+    $(element).addClass('is-invalid');
+}
+function unhighlight(element) {
+    $(element).removeClass('is-invalid');
+}
 function ShowError(error) {
     $("#msj").html(error);
 }
-
 function SwalErrorMsj(data) {
     CloseModalBox();
     Swal.fire(
