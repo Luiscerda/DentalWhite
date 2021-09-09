@@ -38,5 +38,17 @@
         <elementListCompartment Id="0712cd85-184f-4860-92d9-9ecc2f36d4ab" absoluteBounds="2.7649999999999997, 1.71, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="01168816-58e0-4a93-841f-df0bcb3a8f91" isExpanded="false" absoluteBounds="5.125, 1.25, 2, 0.45">
+      <DataClassMoniker Name="/DBDataContext/Vw_Hora" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ce3f2dd0-4000-4361-91d5-df7c846d2eb8" absoluteBounds="5.14, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d5c7bb39-fd79-48fa-82c1-bcb8a6325948" isExpanded="false" absoluteBounds="7.5, 1.25, 2, 0.45">
+      <DataClassMoniker Name="/DBDataContext/Vw_Horarios" />
+      <nestedChildShapes>
+        <elementListCompartment Id="765c0de6-6312-4ef4-a9a6-24f4187f584f" absoluteBounds="7.5150000000000006, 1.71, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

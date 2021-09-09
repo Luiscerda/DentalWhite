@@ -68,7 +68,11 @@ function Save_DataPost(callbacksussces, Url, ObjPost, TituloMsj, EnvioDesdeModal
                     }
                     callbacksussces(data)
                 } else {
-                    SwalErrorMsj(data);
+                    Swal.fire(
+                        'Error!',
+                        data.Msj,
+                        'error'
+                    );
 
 
                 }

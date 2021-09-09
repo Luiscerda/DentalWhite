@@ -110,6 +110,22 @@ namespace DentalWhite.AccesoDatos
 			}
 		}
 		
+		public System.Data.Linq.Table<Vw_Hora> Vw_Hora
+		{
+			get
+			{
+				return this.GetTable<Vw_Hora>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Vw_Horarios> Vw_Horarios
+		{
+			get
+			{
+				return this.GetTable<Vw_Horarios>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Add_Paciente")]
 		public ISingleResult<sp_Add_PacienteResult> sp_Add_Paciente(
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodTipoDoc", DbType="NChar(10)")] string codTipoDoc, 
@@ -186,6 +202,13 @@ namespace DentalWhite.AccesoDatos
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), celular, telefono, correo, codDepartamento, codMunicipio, barrio, direccion, userMod, fechaMod, idDoctor);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Add_Horario")]
+		public ISingleResult<sp_Add_HorarioResult> sp_Add_Horario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="NVarChar(20)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodHora", DbType="NChar(30)")] string codHora, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodEstado", DbType="NChar(10)")] string codEstado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaReg", DbType="DateTime")] System.Nullable<System.DateTime> fechaReg, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserReg", DbType="Int")] System.Nullable<int> userReg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, codHora, codEstado, fechaReg, userReg);
+			return ((ISingleResult<sp_Add_HorarioResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1647,6 +1670,330 @@ namespace DentalWhite.AccesoDatos
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Hora")]
+	public partial class Vw_Hora
+	{
+		
+		private int _HoraId;
+		
+		private string _CodHora;
+		
+		private string _Hora;
+		
+		private string _CodEstado;
+		
+		private string _DescEstado;
+		
+		public Vw_Hora()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoraId", DbType="Int NOT NULL")]
+		public int HoraId
+		{
+			get
+			{
+				return this._HoraId;
+			}
+			set
+			{
+				if ((this._HoraId != value))
+				{
+					this._HoraId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodHora", DbType="NChar(30) NOT NULL", CanBeNull=false)]
+		public string CodHora
+		{
+			get
+			{
+				return this._CodHora;
+			}
+			set
+			{
+				if ((this._CodHora != value))
+				{
+					this._CodHora = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hora", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string Hora
+		{
+			get
+			{
+				return this._Hora;
+			}
+			set
+			{
+				if ((this._Hora != value))
+				{
+					this._Hora = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodEstado", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string CodEstado
+		{
+			get
+			{
+				return this._CodEstado;
+			}
+			set
+			{
+				if ((this._CodEstado != value))
+				{
+					this._CodEstado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescEstado", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string DescEstado
+		{
+			get
+			{
+				return this._DescEstado;
+			}
+			set
+			{
+				if ((this._DescEstado != value))
+				{
+					this._DescEstado = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Horarios")]
+	public partial class Vw_Horarios
+	{
+		
+		private int _HorarioId;
+		
+		private string _Identificacion;
+		
+		private string _CodHora;
+		
+		private string _CodEstado;
+		
+		private string _DescEstado;
+		
+		private string _Hora;
+		
+		private string _PrimerNombre;
+		
+		private string _SegundoNombre;
+		
+		private string _PrimerApellido;
+		
+		private string _SegundoApellido;
+		
+		private System.DateTime _FechaReg;
+		
+		private int _UserReg;
+		
+		public Vw_Horarios()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HorarioId", DbType="Int NOT NULL")]
+		public int HorarioId
+		{
+			get
+			{
+				return this._HorarioId;
+			}
+			set
+			{
+				if ((this._HorarioId != value))
+				{
+					this._HorarioId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodHora", DbType="NChar(30) NOT NULL", CanBeNull=false)]
+		public string CodHora
+		{
+			get
+			{
+				return this._CodHora;
+			}
+			set
+			{
+				if ((this._CodHora != value))
+				{
+					this._CodHora = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodEstado", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string CodEstado
+		{
+			get
+			{
+				return this._CodEstado;
+			}
+			set
+			{
+				if ((this._CodEstado != value))
+				{
+					this._CodEstado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescEstado", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string DescEstado
+		{
+			get
+			{
+				return this._DescEstado;
+			}
+			set
+			{
+				if ((this._DescEstado != value))
+				{
+					this._DescEstado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hora", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string Hora
+		{
+			get
+			{
+				return this._Hora;
+			}
+			set
+			{
+				if ((this._Hora != value))
+				{
+					this._Hora = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimerNombre", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string PrimerNombre
+		{
+			get
+			{
+				return this._PrimerNombre;
+			}
+			set
+			{
+				if ((this._PrimerNombre != value))
+				{
+					this._PrimerNombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SegundoNombre", DbType="NVarChar(30)")]
+		public string SegundoNombre
+		{
+			get
+			{
+				return this._SegundoNombre;
+			}
+			set
+			{
+				if ((this._SegundoNombre != value))
+				{
+					this._SegundoNombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimerApellido", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string PrimerApellido
+		{
+			get
+			{
+				return this._PrimerApellido;
+			}
+			set
+			{
+				if ((this._PrimerApellido != value))
+				{
+					this._PrimerApellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SegundoApellido", DbType="NVarChar(30)")]
+		public string SegundoApellido
+		{
+			get
+			{
+				return this._SegundoApellido;
+			}
+			set
+			{
+				if ((this._SegundoApellido != value))
+				{
+					this._SegundoApellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaReg", DbType="DateTime NOT NULL")]
+		public System.DateTime FechaReg
+		{
+			get
+			{
+				return this._FechaReg;
+			}
+			set
+			{
+				if ((this._FechaReg != value))
+				{
+					this._FechaReg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserReg", DbType="Int NOT NULL")]
+		public int UserReg
+		{
+			get
+			{
+				return this._UserReg;
+			}
+			set
+			{
+				if ((this._UserReg != value))
+				{
+					this._UserReg = value;
+				}
+			}
+		}
+	}
+	
 	public partial class sp_Add_PacienteResult
 	{
 		
@@ -1705,6 +2052,32 @@ namespace DentalWhite.AccesoDatos
 		private System.Nullable<decimal> _Id;
 		
 		public sp_Add_DoctorResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Decimal(38,0)")]
+		public System.Nullable<decimal> Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_Add_HorarioResult
+	{
+		
+		private System.Nullable<decimal> _Id;
+		
+		public sp_Add_HorarioResult()
 		{
 		}
 		

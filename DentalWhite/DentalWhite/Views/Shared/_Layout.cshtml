@@ -44,6 +44,7 @@ else
             var pacientes = "nav-link";
             var doctor = "nav-link";
             var horario = "nav-link";
+            var cita = "nav-link";
             switch (vista)
             {
                 case "Agregar Paciente":
@@ -60,6 +61,9 @@ else
                 case "Asignar horario":
                     horario = "nav-link active";
                     break;
+                case "Asignar cita":
+                    cita = "nav-link active";
+                    break;
             }
          }
         <div class="wrapper">
@@ -73,6 +77,9 @@ else
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href='@Url.Action("Index","Home")' class="nav-link">Inicio</a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a class="nav-link">@ViewBag.Title</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -163,7 +170,7 @@ else
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="#" class="@cita">
                                     <i class="nav-icon fas fa-file-medical"></i>
                                     <p>Citas <i class="right fas fa-angle-left"></i></p>
                                 </a>

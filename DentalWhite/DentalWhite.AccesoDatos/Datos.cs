@@ -260,5 +260,70 @@ namespace DentalWhite.AccesoDatos
             return result;
         }
         #endregion
+
+        #region Hora
+
+        public List<Vw_Hora> GetHoras()
+        {
+            Conectar();
+            List<Vw_Hora> horas = DB.Vw_Hora.ToList();
+            Desconectar();
+            return horas;
+        }
+        public int Add_Horario(Vw_Horarios horario)
+        {
+            int result = 0;
+            try
+            {
+                this.Conectar();
+                using (TransactionScope tran = CreateTransactionScope(TimeSpan.FromMinutes(1800)))
+                {
+                    try
+                    {
+                        int a = (int)DB.sp_Add_Horario(horario.Identificacion, horario.CodHora, horario.CodEstado, DateTime.Now, 
+                            horario.UserReg).FirstOrDefault().Id;
+
+                        DB.SubmitChanges();
+                        tran.Complete();
+                        result = 1;
+                    }
+                    catch (Exception exe)
+                    {
+                        Transaction.Current.Rollback();
+                        WriteExceptionLog(exe);
+                        result = -1;
+                    }
+                }
+                Desconectar();
+            }
+            catch (Exception ex)
+            {
+                result = -1;
+                WriteExceptionLog(ex);
+            }
+            return result;
+        }
+        public Vw_Horarios GetHorarioByIdentificacionAndCod(string identificacion, string codHora)
+        {
+            Conectar();
+            Vw_Horarios horario = DB.Vw_Horarios.Where(w => w.Identificacion.Trim() == identificacion.Trim() && w.CodHora == codHora).FirstOrDefault();
+            Desconectar();
+            return horario;
+        }
+        public List<Vw_Horarios> Get_Horarios()
+        {
+            Conectar();
+            List<Vw_Horarios> horarios = DB.Vw_Horarios.ToList();
+            Desconectar();
+            return horarios;
+        }
+        public List<Vw_Horarios> Get_HorariosByIdentificacion(string identificacion)
+        {
+            Conectar();
+            List<Vw_Horarios> horarios = DB.Vw_Horarios.Where(w => w.Identificacion.Trim() == identificacion.Trim() && w.CodEstado == "001").ToList();
+            Desconectar();
+            return horarios;
+        }
+        #endregion
     }
 }

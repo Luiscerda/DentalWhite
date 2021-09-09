@@ -44,9 +44,9 @@ function ShowError(error) {
 function SwalErrorMsj(data) {
     CloseModalBox();
     Swal.fire(
-        'error',
-        'Mensaje',
+        'Error!',
         data.Msj,
+        'error',
     );
 }
 

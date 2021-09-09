@@ -1,8 +1,65 @@
-﻿
+﻿<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script src="~/Scripts/App/Cita/Asignar.js"></script>
 @{
     ViewBag.Title = "Asignar cita";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Asignar</h2>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h5 class="card-title">Doctor</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Escoja un doctor</label>
+                    <select class="form-control" id="selectDoctor"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h5 class="card-title">Paciente</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Escoja un paciente</label>
+                    <select class="form-control select2" id="selectPaciente"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h5 class="card-title">Horario</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Fecha</label>
+                            <div class="input-group">
+                                <input class="form-control" id="fecha" type="date" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Hora</label>
+                            <select class="form-control" id="selectHorario"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:end">
+            <button style="width:170px" class="btn btn-primary" id="btnRegistrar">Registrar</button>
+            <button style="width:170px" class="btn btn-danger" id="btnCancelar">Cancelar</button>
+        </div>
+    </div>
+</div>
 
