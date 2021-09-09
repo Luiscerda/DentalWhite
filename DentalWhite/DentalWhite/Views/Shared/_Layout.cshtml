@@ -28,7 +28,7 @@ else
         <link rel="stylesheet" href="~/Content/plugins/bs-stepper/css/bs-stepper.min.css" />
         <link rel="stylesheet" href="~/Content/plugins/jqvmap/jqvmap.min.css" />
         <link rel="stylesheet" href="~/Content/dist/css/adminlte.min.css" />
-        @*<link rel="stylesheet" href="~/Content/plugins/sweetalert/sweetalert.css"/>*@
+
         <link rel="stylesheet" href="~/Content/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"/>
         <link rel="stylesheet" href="~/Content/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"/>
         <link rel="stylesheet" href="~/Content/plugins/datatables-responsive/css/responsive.bootstrap4.min.css"/>
@@ -36,9 +36,32 @@ else
         <link rel="stylesheet" href="~/Content/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
         <link rel="stylesheet" href="~/Content/plugins/daterangepicker/daterangepicker.css" />
         <link rel="stylesheet" href="~/Content/plugins/summernote/summernote-bs4.min.css" />
-        
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
+        @{
+            var vista = ViewBag.Title.Trim();
+            var home = "nav-link";
+            var pacientes = "nav-link";
+            var doctor = "nav-link";
+            var horario = "nav-link";
+            switch (vista)
+            {
+                case "Agregar Paciente":
+                case "Pacientes / Activos":
+                    pacientes = "nav-link active";
+                    break;
+                case "Home Page":
+                    home = "nav-link active";
+                    break;
+                case "Agregar doctor":
+                case "Doctores":
+                    doctor = "nav-link active";
+                    break;
+                case "Asignar horario":
+                    horario = "nav-link active";
+                    break;
+            }
+         }
         <div class="wrapper">
             <div class="preloader flex-column justify-content-center align-items-center">
                 <img class="animation__shake" src="~/Content/dist/img/dentalwhite.jpeg" height="60" width="60" alt="ImageDentalWhite" />
@@ -77,13 +100,13 @@ else
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item menu-open">
-                                <a href="#" class="nav-link active">
+                                <a href="#" class="@home">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>Dashboard</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="#" class="@pacientes">
                                     <i class="nav-icon fas fa-user-friends"></i>
                                     <p>Pacientes <i class="right fas fa-angle-left"></i></p>
                                 </a>
@@ -95,15 +118,32 @@ else
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href='@Url.Action("GetPatients","Paciente")' class="nav-link">
+                                        <a href="#" class="nav-link">
                                             <i class="fas fa-list"></i>
-                                            <p>Consultar</p>
+                                            <p>
+                                                Consultar
+                                                <i class="fas fa-angle-left right"></i>
+                                            </p>
                                         </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href='@Url.Action("GetPatients","Paciente")' class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Activos</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href='@Url.Action("GetPatients","Paciente")' class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Inactivos</p>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="#" class="@doctor">
                                     <i class="nav-icon fas fa-hospital-user"></i>
                                     <p>Doctores <i class="right fas fa-angle-left"></i></p>
                                 </a>
@@ -143,6 +183,12 @@ else
                                 </ul>
                             </li>
                             <li class="nav-item">
+                                <a href='@Url.Action("Index","Horario")' class="@horario">
+                                    <i class="nav-icon fas fa-user-clock"></i>
+                                    <p>Horario</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a id="cerrarSesion" class="nav-link" style="cursor:pointer">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>
                                     <p>Cerrar sesion</p>
@@ -157,7 +203,11 @@ else
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">@ViewBag.Title</h1>
+                                @*@{
+                                    int position = ViewBag.Title.IndexOf("/");
+            var s = ViewBag.Title.Contains("/") ? ViewBag.Title.Substring(0, position) : ViewBag.Title;
+        }
+                                <h1 class="m-0">@s</h1>*@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">

@@ -161,6 +161,7 @@
     <Compile Include="Controllers\ComunController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HorarioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -834,6 +835,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\App\Doctor\AddDoctor.js" />
     <Content Include="Scripts\App\Doctor\GetDoctor.js" />
+    <Content Include="Scripts\App\Horario\Horario.js" />
     <Content Include="Scripts\App\Login\DataUser.js" />
     <Content Include="Scripts\App\Login\Login.js" />
     <Content Include="Scripts\App\Paciente\AddPaciente.js" />
@@ -943,6 +945,7 @@
     <Content Include="Views\Doctor\AddDoctor.cshtml" />
     <Content Include="Views\Cita\Asignar.cshtml" />
     <Content Include="Views\Doctor\GetDoctor.cshtml" />
+    <Content Include="Views\Horario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

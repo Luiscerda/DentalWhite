@@ -74,6 +74,7 @@ namespace DentalWhite.Controllers
                 w.PrimerNombe = w.PrimerNombe + " " + w.SegundoNombre;
                 w.SegundoApellido = string.IsNullOrEmpty(w.SegundoApellido) ? "" : w.SegundoApellido;
                 w.PrimerApellido = w.PrimerApellido + " " + w.SegundoApellido;
+                
             });
             result.Objeto = doctores;
             result.Is_Error = false;
@@ -102,6 +103,36 @@ namespace DentalWhite.Controllers
 
 
             return Utilidades.ToJsonResult(Retorno);
+        }
+
+        [HttpPost]
+        [Route("Doctor/GetDoctorById")]
+        public JsonResult GetDoctorById(Vw_Usuarios User)
+        {
+            string id = Request["ID"];
+            Ajax_Data result = new Ajax_Data();
+            DoctorModel doctorModel = new DoctorModel();
+            UsuarioModel Um = new UsuarioModel();
+            Vw_Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
+            if (UserValidate == null)
+            {
+                result.Is_Error = true;
+                result.Msj = "Credenciales incorrectas";
+                return Utilidades.ToJsonResult(result);
+            }
+            Vw_Doctor doctor = doctorModel.GetDoctorByIdentificacion(id);
+            if (doctor != null)
+            {
+                result.Objeto = doctor;
+                result.Is_Error = false;
+            }
+            else
+            {
+                result.Msj = "Identificacion invalida, verifique el id";
+            }
+            
+
+            return Utilidades.ToJsonResult(result);
         }
     }
 }

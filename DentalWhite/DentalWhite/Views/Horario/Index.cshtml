@@ -1,0 +1,70 @@
+﻿<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script src="~/Scripts/App/Horario/Horario.js"></script>
+@{
+    ViewBag.Title = "Asignar horario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .labelError {
+        color: #dc3545;
+        font-size: 80%;
+        margin-top: .25rem;
+        width: 100%;
+    }
+</style>
+<div class="content">
+    <div class="row">
+        <div class="col-md-12"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h5 class="card-title m-0">Datos del odontologo</h5>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Identificacion</label>
+                        <select class="form-control select2" id="selectDoctor" name="selectDoctor"></select>
+                        <span id="inputSelectDocError" class="labelError">Seleccione un doctor</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Horario</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Hora</label>
+                        <input class="form-control" type="time" />
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:end">
+                <button class="btn btn-primary" id="btnRegistrar">Registrar</button>
+                <button class="btn btn-danger ">Cancelar</button>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-12"><br></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Horarios</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <input placeholder="Buscar..." class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
