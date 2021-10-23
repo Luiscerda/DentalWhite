@@ -56,5 +56,11 @@
         <elementListCompartment Id="bd20f64a-2a7e-4ff3-84b8-70b358ebb567" absoluteBounds="2.7649999999999997, 1.71, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="6e5bcbc2-ae16-4555-8af9-1819f375c365" isExpanded="false" absoluteBounds="2.75, 2, 2, 0.45">
+      <DataClassMoniker Name="/DBDataContext/Vw_Cita" />
+      <nestedChildShapes>
+        <elementListCompartment Id="15ea943f-41fb-478d-8a63-bcaad4981432" absoluteBounds="2.7649999999999997, 2.46, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

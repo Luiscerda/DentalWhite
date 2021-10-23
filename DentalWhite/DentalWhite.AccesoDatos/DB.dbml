@@ -131,6 +131,31 @@
       <Column Name="DescTipo" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.Vw_Cita" Member="Vw_Cita">
+    <Type Name="Vw_Cita">
+      <Column Name="IdentificacionPaciente" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PrimerNombrePaciente" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="SegundoNombrePaciente" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="PrimerApellidoPaciente" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="SegundoApellidoPaciente" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="EdadPaciente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CelularPaciente" Type="System.String" DbType="NChar(12)" CanBeNull="true" />
+      <Column Name="Identificacion" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PrimerNombre" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="SegundoNombre" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="PrimerApellido" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="SegundoApelldo" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Edad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Celular" Type="System.String" DbType="NChar(12)" CanBeNull="true" />
+      <Column Name="FechaCita" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CodHora" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="CodEstado" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DescEstado" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="UserReg" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserMod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.sp_Add_Doctor" Method="sp_Add_Doctor">
     <Parameter Name="CodTipoDoc" Parameter="codTipoDoc" Type="System.String" DbType="NChar(10)" />
     <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="NVarChar(20)" />
@@ -232,6 +257,25 @@
     <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="NVarChar(30)" />
     <Parameter Name="UserMod" Parameter="userMod" Type="System.Int32" DbType="Int" />
     <Parameter Name="IdDoctor" Parameter="idDoctor" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Add_Cita" Method="sp_Add_Cita">
+    <Parameter Name="IdentificacionD" Parameter="identificacionD" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="IdentificacionP" Parameter="identificacionP" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="FechaCita" Parameter="fechaCita" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="HorarioId" Parameter="horarioId" Type="System.String" DbType="NChar(30)" />
+    <Parameter Name="CodEstado" Parameter="codEstado" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="FechaReg" Parameter="fechaReg" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="UserReg" Parameter="userReg" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Add_CitaResult">
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Upd_Horario" Method="sp_Upd_Horario">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="CodHora" Parameter="codHora" Type="System.String" DbType="NChar(30)" />
+    <Parameter Name="CodEstado" Parameter="codEstado" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="UserMod" Parameter="userMod" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

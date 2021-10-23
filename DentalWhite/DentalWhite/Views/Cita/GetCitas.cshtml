@@ -1,0 +1,32 @@
+﻿<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script src="~/Scripts/App/Cita/Citas.js"></script>
+@{
+    ViewBag.Title = "Citas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Listado</h3>
+            </div>
+            <div class="card-body">
+                <table id="tableCitas" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID Paciente</th>
+                            <th>Nombre Paciente</th>
+                            <th>ID Doctor</th>
+                            <th>Nombre Doctor</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

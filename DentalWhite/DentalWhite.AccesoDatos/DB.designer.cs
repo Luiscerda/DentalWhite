@@ -149,6 +149,14 @@ namespace DentalWhite.AccesoDatos
 			}
 		}
 		
+		public System.Data.Linq.Table<Vw_Cita> Vw_Cita
+		{
+			get
+			{
+				return this.GetTable<Vw_Cita>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Add_Doctor")]
 		public ISingleResult<sp_Add_DoctorResult> sp_Add_Doctor(
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodTipoDoc", DbType="NChar(10)")] string codTipoDoc, 
@@ -231,6 +239,20 @@ namespace DentalWhite.AccesoDatos
 		public int sp_Upd_Doctor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Celular", DbType="NChar(12)")] string celular, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="NChar(10)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="NVarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string codDepartamento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodMunicipio", DbType="Int")] System.Nullable<int> codMunicipio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Barrio", DbType="NVarChar(30)")] string barrio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="NVarChar(30)")] string direccion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserMod", DbType="Int")] System.Nullable<int> userMod, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdDoctor", DbType="Int")] System.Nullable<int> idDoctor)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), celular, telefono, correo, codDepartamento, codMunicipio, barrio, direccion, userMod, idDoctor);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Add_Cita")]
+		public ISingleResult<sp_Add_CitaResult> sp_Add_Cita([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdentificacionD", DbType="NVarChar(20)")] string identificacionD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdentificacionP", DbType="VarChar(20)")] string identificacionP, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaCita", DbType="DateTime")] System.Nullable<System.DateTime> fechaCita, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="HorarioId", DbType="NChar(30)")] string horarioId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodEstado", DbType="NChar(10)")] string codEstado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaReg", DbType="DateTime")] System.Nullable<System.DateTime> fechaReg, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserReg", DbType="Int")] System.Nullable<int> userReg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacionD, identificacionP, fechaCita, horarioId, codEstado, fechaReg, userReg);
+			return ((ISingleResult<sp_Add_CitaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Upd_Horario")]
+		public int sp_Upd_Horario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="NVarChar(20)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodHora", DbType="NChar(30)")] string codHora, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodEstado", DbType="NChar(10)")] string codEstado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserMod", DbType="Int")] System.Nullable<int> userMod)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, codHora, codEstado, userMod);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -2339,6 +2361,393 @@ namespace DentalWhite.AccesoDatos
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Cita")]
+	public partial class Vw_Cita
+	{
+		
+		private string _IdentificacionPaciente;
+		
+		private string _PrimerNombrePaciente;
+		
+		private string _SegundoNombrePaciente;
+		
+		private string _PrimerApellidoPaciente;
+		
+		private string _SegundoApellidoPaciente;
+		
+		private int _EdadPaciente;
+		
+		private string _CelularPaciente;
+		
+		private string _Identificacion;
+		
+		private string _PrimerNombre;
+		
+		private string _SegundoNombre;
+		
+		private string _PrimerApellido;
+		
+		private string _SegundoApelldo;
+		
+		private int _Edad;
+		
+		private string _Celular;
+		
+		private System.Nullable<System.DateTime> _FechaCita;
+		
+		private string _CodHora;
+		
+		private string _CodEstado;
+		
+		private string _DescEstado;
+		
+		private System.Nullable<int> _UserReg;
+		
+		private System.Nullable<int> _UserMod;
+		
+		private string _Hora;
+		
+		public Vw_Cita()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdentificacionPaciente", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string IdentificacionPaciente
+		{
+			get
+			{
+				return this._IdentificacionPaciente;
+			}
+			set
+			{
+				if ((this._IdentificacionPaciente != value))
+				{
+					this._IdentificacionPaciente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimerNombrePaciente", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string PrimerNombrePaciente
+		{
+			get
+			{
+				return this._PrimerNombrePaciente;
+			}
+			set
+			{
+				if ((this._PrimerNombrePaciente != value))
+				{
+					this._PrimerNombrePaciente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SegundoNombrePaciente", DbType="NVarChar(30)")]
+		public string SegundoNombrePaciente
+		{
+			get
+			{
+				return this._SegundoNombrePaciente;
+			}
+			set
+			{
+				if ((this._SegundoNombrePaciente != value))
+				{
+					this._SegundoNombrePaciente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimerApellidoPaciente", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string PrimerApellidoPaciente
+		{
+			get
+			{
+				return this._PrimerApellidoPaciente;
+			}
+			set
+			{
+				if ((this._PrimerApellidoPaciente != value))
+				{
+					this._PrimerApellidoPaciente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SegundoApellidoPaciente", DbType="NVarChar(30)")]
+		public string SegundoApellidoPaciente
+		{
+			get
+			{
+				return this._SegundoApellidoPaciente;
+			}
+			set
+			{
+				if ((this._SegundoApellidoPaciente != value))
+				{
+					this._SegundoApellidoPaciente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EdadPaciente", DbType="Int NOT NULL")]
+		public int EdadPaciente
+		{
+			get
+			{
+				return this._EdadPaciente;
+			}
+			set
+			{
+				if ((this._EdadPaciente != value))
+				{
+					this._EdadPaciente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CelularPaciente", DbType="NChar(12)")]
+		public string CelularPaciente
+		{
+			get
+			{
+				return this._CelularPaciente;
+			}
+			set
+			{
+				if ((this._CelularPaciente != value))
+				{
+					this._CelularPaciente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimerNombre", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string PrimerNombre
+		{
+			get
+			{
+				return this._PrimerNombre;
+			}
+			set
+			{
+				if ((this._PrimerNombre != value))
+				{
+					this._PrimerNombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SegundoNombre", DbType="NVarChar(30)")]
+		public string SegundoNombre
+		{
+			get
+			{
+				return this._SegundoNombre;
+			}
+			set
+			{
+				if ((this._SegundoNombre != value))
+				{
+					this._SegundoNombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimerApellido", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string PrimerApellido
+		{
+			get
+			{
+				return this._PrimerApellido;
+			}
+			set
+			{
+				if ((this._PrimerApellido != value))
+				{
+					this._PrimerApellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SegundoApelldo", DbType="NVarChar(30)")]
+		public string SegundoApelldo
+		{
+			get
+			{
+				return this._SegundoApelldo;
+			}
+			set
+			{
+				if ((this._SegundoApelldo != value))
+				{
+					this._SegundoApelldo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Edad", DbType="Int NOT NULL")]
+		public int Edad
+		{
+			get
+			{
+				return this._Edad;
+			}
+			set
+			{
+				if ((this._Edad != value))
+				{
+					this._Edad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Celular", DbType="NChar(12)")]
+		public string Celular
+		{
+			get
+			{
+				return this._Celular;
+			}
+			set
+			{
+				if ((this._Celular != value))
+				{
+					this._Celular = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCita", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaCita
+		{
+			get
+			{
+				return this._FechaCita;
+			}
+			set
+			{
+				if ((this._FechaCita != value))
+				{
+					this._FechaCita = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodHora", DbType="NChar(30) NOT NULL", CanBeNull=false)]
+		public string CodHora
+		{
+			get
+			{
+				return this._CodHora;
+			}
+			set
+			{
+				if ((this._CodHora != value))
+				{
+					this._CodHora = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodEstado", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string CodEstado
+		{
+			get
+			{
+				return this._CodEstado;
+			}
+			set
+			{
+				if ((this._CodEstado != value))
+				{
+					this._CodEstado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescEstado", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string DescEstado
+		{
+			get
+			{
+				return this._DescEstado;
+			}
+			set
+			{
+				if ((this._DescEstado != value))
+				{
+					this._DescEstado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserReg", DbType="Int")]
+		public System.Nullable<int> UserReg
+		{
+			get
+			{
+				return this._UserReg;
+			}
+			set
+			{
+				if ((this._UserReg != value))
+				{
+					this._UserReg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserMod", DbType="Int")]
+		public System.Nullable<int> UserMod
+		{
+			get
+			{
+				return this._UserMod;
+			}
+			set
+			{
+				if ((this._UserMod != value))
+				{
+					this._UserMod = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hora", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string Hora
+		{
+			get
+			{
+				return this._Hora;
+			}
+			set
+			{
+				if ((this._Hora != value))
+				{
+					this._Hora = value;
+				}
+			}
+		}
+	}
+	
 	public partial class sp_Add_DoctorResult
 	{
 		
@@ -2423,6 +2832,32 @@ namespace DentalWhite.AccesoDatos
 		private System.Nullable<decimal> _Id;
 		
 		public sp_Add_UsuarioResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Decimal(38,0)")]
+		public System.Nullable<decimal> Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_Add_CitaResult
+	{
+		
+		private System.Nullable<decimal> _Id;
+		
+		public sp_Add_CitaResult()
 		{
 		}
 		

@@ -325,5 +325,52 @@ namespace DentalWhite.AccesoDatos
             return horarios;
         }
         #endregion
+
+        #region Cita
+
+        public int Add_Cita(Vw_Cita cita)
+        {
+            int result = 0;
+            try
+            {
+                this.Conectar();
+                using (TransactionScope tran = CreateTransactionScope(TimeSpan.FromMinutes(1800)))
+                {
+                    try
+                    {
+                        int a = (int)DB.sp_Add_Cita(cita.Identificacion, cita.IdentificacionPaciente, cita.FechaCita, cita.CodHora,
+                            "003", DateTime.Now, cita.UserReg).FirstOrDefault().Id;
+
+                        int b = DB.sp_Upd_Horario(cita.Identificacion.Trim(), cita.CodHora.Trim(), "003", cita.UserReg);
+
+                        DB.SubmitChanges();
+                        tran.Complete();
+                        result = 1;
+                    }
+                    catch (Exception exe)
+                    {
+                        Transaction.Current.Rollback();
+                        WriteExceptionLog(exe);
+                        result = -1;
+                    }
+                }
+                Desconectar();
+            }
+            catch (Exception ex)
+            {
+                result = -1;
+                WriteExceptionLog(ex);
+            }
+            return result;
+        }
+
+        public List<Vw_Cita> GetCitas()
+        {
+            Conectar();
+            List<Vw_Cita> citas = DB.Vw_Cita.ToList();
+            Desconectar();
+            return citas;
+        }
+        #endregion
     }
 }
