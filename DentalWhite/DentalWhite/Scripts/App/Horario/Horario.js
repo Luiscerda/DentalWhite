@@ -72,7 +72,7 @@ function GetDoctores(data) {
     let htmlDocs = "";
     htmlDocs += "<option value=''>Seleccionar</option>";
     $.each(ArrayDocs, function (index, item) {
-        htmlDocs += "<option value=" + item.Identificacion.trim() + ">" + item.PrimerNombe.trim() +" " + item.PrimerApellido.trim() + "</option>";
+        htmlDocs += "<option value=" + item.Identificacion.trim() + ">" + item.PrimerNombre.trim() +" " + item.PrimerApellido.trim() + "</option>";
     })
     $("#selectDoctor").html(htmlDocs);
 }

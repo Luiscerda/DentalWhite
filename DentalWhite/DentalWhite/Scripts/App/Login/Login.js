@@ -1,10 +1,13 @@
 ﻿$(document).ready(function () {
     EventPlaceholder();
+    validarLogin();
+    $("#inputUserError").hide();
+    $("#inputPassError").hide();
 
     $("#btnlogin").on("click", function (event) {
-        var userName = $("#UserName").val();
-        var password = $("#Password").val()
-        if (userName.trim() != "") {
+        if (validarUserName()) {
+            var password = $("#Password").val();
+            var userName = $("#UserName").val();
             if (password.trim() != "") {
                 ServiceLogin(userName, password);
             } else {
@@ -15,15 +18,7 @@
                     closeOnConfirm: true,
                 });
             }
-        } else {
-            swal.fire({
-                title: "¡Error!",
-                text: "Digite su usuario",
-                type: "error",
-                closeOnConfirm: true,
-            });
         }
-        
     });
 });
 
@@ -34,6 +29,38 @@ function EventPlaceholder() {
     $("#Password").on("keyup", function () {
         this.setAttribute('value', this.value);
     })
+}
+function validarLogin() {
+    $('input[name=UserName]').on('keyup', () => {
+
+        var input1 = $('.userNa').val();
+
+        if (input1.length == 0) {
+            unhighlight('input[name=UserName]');
+            $("#inputUserError").hide();
+        }
+        else if (input1.length > 7) {
+            unhighlight('input[name=UserName]');
+            $("#inputUserError").hide();
+        }
+        else {
+            highLight('input[name=UserName]')
+            $("#inputUserError").show();
+        }
+    });
+    $('input[name=Password]').on('keyup', () => {
+
+        var input1 = $('.Pass').val();
+
+        if (input1.length == 0) {
+            unhighlight('input[name=Password]');
+        }
+        else if(input1.length < 6) {
+            highLight('input[name=Password]')
+        } else {
+            unhighlight('input[name=Password]')   
+        }
+    });
 }
 
 function ServiceLogin(userName, password) {
@@ -66,4 +93,29 @@ function ServiceLogin(userName, password) {
                 console.log(errorThrown);
             }
         });
+}
+function validarUserName() {
+    let valido = false;
+    var userName = $("#UserName").val();
+    var pass = $("#Password").val();
+    if (userName == "") {
+        highLight('input[name=UserName]')
+        $("#inputUserError").show();
+    } else if (userName.length < 8) {
+        highLight('input[name=UserName]')
+        $("#inputUserError").show();
+    } else {
+        unhighlight('input[name=UserName]');
+        $("#inputUserError").hide();
+    }
+    if (pass.length < 6) {
+        highLight('input[name=Password]');
+        return valido;
+    }
+    if (userName != "") {
+        if (pass != "") {
+            valido = true;
+        }
+    }
+    return valido;
 }

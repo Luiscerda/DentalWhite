@@ -14,7 +14,7 @@ namespace DentalWhite.Models
             datos = new Datos();
         }
 
-        public Vw_Usuarios GetUsuarioValidate(string userName,string password)
+        public Usuarios GetUsuarioValidate(string userName,string password)
         {
             return datos.GetUsuarioValidate(userName,password);
         }

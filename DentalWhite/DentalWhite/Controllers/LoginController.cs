@@ -19,7 +19,7 @@ namespace DentalWhite.Controllers
 
         [Route("Login/Login")]
         [HttpPost]
-        public JsonResult Login(Vw_Usuarios userPost)
+        public JsonResult Login(Usuarios userPost)
         {
             Ajax_Data retorno = new Ajax_Data();
             UsuarioModel model = new UsuarioModel();
@@ -27,7 +27,7 @@ namespace DentalWhite.Controllers
             string password = userPost.Password;
             if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(password))
             {
-                Vw_Usuarios usuario = model.GetUsuarioValidate(userName,password);
+                Usuarios usuario = model.GetUsuarioValidate(userName,password);
                 if (usuario != null)
                 {
                     retorno.Objeto = usuario;

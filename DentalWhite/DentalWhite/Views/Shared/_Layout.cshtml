@@ -1,5 +1,5 @@
 ﻿@{
-    DentalWhite.AccesoDatos.Vw_Usuarios usuario = new DentalWhite.AccesoDatos.Vw_Usuarios();
+    DentalWhite.AccesoDatos.Usuarios usuario = new DentalWhite.AccesoDatos.Usuarios();
     if (Request.Cookies["UsuarioDW"] != null)
     {
         usuario = DentalWhite.Clases.Utilidades.Base64Decode(Request.Cookies["UsuarioDW"].Value);
@@ -112,63 +112,74 @@ else
                                     <p>Dashboard</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="@pacientes">
-                                    <i class="nav-icon fas fa-user-friends"></i>
-                                    <p>Pacientes <i class="right fas fa-angle-left"></i></p>
-                                </a>
-                                <ul class="nav nav-treeview">
+                            @{
+                                if (usuario.CodRol.Trim().Equals("001"))
+                                {
                                     <li class="nav-item">
-                                        <a href='@Url.Action("AddPatient","Paciente")' class="nav-link">
-                                            <i class="fas fa-user-plus"></i>
-                                            <p>Registrar</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="fas fa-list"></i>
-                                            <p>
-                                                Consultar
-                                                <i class="fas fa-angle-left right"></i>
-                                            </p>
+                                        <a href="#" class="@pacientes">
+                                            <i class="nav-icon fas fa-user-friends"></i>
+                                            <p>Pacientes <i class="right fas fa-angle-left"></i></p>
                                         </a>
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
-                                                <a href='@Url.Action("GetPatients","Paciente")' class="nav-link">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>Activos</p>
+                                                <a href='@Url.Action("AddPatient","Paciente")' class="nav-link">
+                                                    <i class="fas fa-user-plus"></i>
+                                                    <p>Registrar</p>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href='@Url.Action("GetPatients","Paciente")' class="nav-link">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>Inactivos</p>
+                                                <a href="#" class="nav-link">
+                                                    <i class="fas fa-list"></i>
+                                                    <p>
+                                                        Consultar
+                                                        <i class="fas fa-angle-left right"></i>
+                                                    </p>
+                                                </a>
+                                                <ul class="nav nav-treeview">
+                                                    <li class="nav-item">
+                                                        <a href='@Url.Action("GetPatients","Paciente")' class="nav-link">
+                                                            <i class="far fa-circle nav-icon"></i>
+                                                            <p>Activos</p>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href='@Url.Action("GetPatients","Paciente")' class="nav-link">
+                                                            <i class="far fa-circle nav-icon"></i>
+                                                            <p>Inactivos</p>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                            @{
+                                if (usuario.CodRol.Trim().Equals("001"))
+                                {
+                                    <li class="nav-item">
+                                        <a href="#" class="@doctor">
+                                            <i class="nav-icon fas fa-hospital-user"></i>
+                                            <p>Doctores <i class="right fas fa-angle-left"></i></p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href='@Url.Action("AddDoctor","Doctor")' class="nav-link">
+                                                    <i class="fas fa-user-plus"></i>
+                                                    <p>Registrar</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href='@Url.Action("GetDoctor","Doctor")' class="nav-link">
+                                                    <i class="fas fa-list"></i>
+                                                    <p>Consultar</p>
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="@doctor">
-                                    <i class="nav-icon fas fa-hospital-user"></i>
-                                    <p>Doctores <i class="right fas fa-angle-left"></i></p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href='@Url.Action("AddDoctor","Doctor")' class="nav-link">
-                                            <i class="fas fa-user-plus"></i>
-                                            <p>Registrar</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href='@Url.Action("GetDoctor","Doctor")' class="nav-link">
-                                            <i class="fas fa-list"></i>
-                                            <p>Consultar</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                }
+                            }
+
                             <li class="nav-item">
                                 <a href="#" class="@cita">
                                     <i class="nav-icon fas fa-file-medical"></i>
@@ -189,12 +200,18 @@ else
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a href='@Url.Action("Index","Horario")' class="@horario">
-                                    <i class="nav-icon fas fa-user-clock"></i>
-                                    <p>Horario</p>
-                                </a>
-                            </li>
+                            @{
+                                if (usuario.CodRol.Trim().Equals("001"))
+                                {
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Index","Horario")' class="@horario">
+                                            <i class="nav-icon fas fa-user-clock"></i>
+                                            <p>Horario</p>
+                                        </a>
+                                    </li>
+                                }
+                            }
+
                             <li class="nav-item">
                                 <a id="cerrarSesion" class="nav-link" style="cursor:pointer">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>

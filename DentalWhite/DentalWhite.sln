@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DentalWhite", "DentalWhite\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DentalWhite.AccesoDatos", "DentalWhite.AccesoDatos\DentalWhite.AccesoDatos.csproj", "{1F8C6A83-7051-4B66-9007-B343E2F62B29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DentalWhite.Test", "DentalWhite.Test\DentalWhite.Test.csproj", "{C933A7D0-A486-4C10-8DBB-8436955CCBC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1F8C6A83-7051-4B66-9007-B343E2F62B29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F8C6A83-7051-4B66-9007-B343E2F62B29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F8C6A83-7051-4B66-9007-B343E2F62B29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C933A7D0-A486-4C10-8DBB-8436955CCBC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C933A7D0-A486-4C10-8DBB-8436955CCBC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C933A7D0-A486-4C10-8DBB-8436955CCBC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C933A7D0-A486-4C10-8DBB-8436955CCBC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

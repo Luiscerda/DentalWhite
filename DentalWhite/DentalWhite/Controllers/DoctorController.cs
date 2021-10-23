@@ -28,6 +28,12 @@ namespace DentalWhite.Controllers
             Ajax_Data Retorno = new Ajax_Data();
             DoctorModel doctorModel = new DoctorModel();
 
+            if (!ValidarDatos(doctor))
+            {
+                Retorno.Is_Error = true;
+                Retorno.Msj = "Aun faltan datos por digitar";
+                return Utilidades.ToJsonResult(Retorno);
+            }
             Vw_Doctor _doctor = doctorModel.GetDoctorByIdentificacion(doctor.Identificacion);
             if (_doctor == null)
             {
@@ -55,12 +61,12 @@ namespace DentalWhite.Controllers
 
         [HttpPost]
         [Route("Doctor/GetDoctores")]
-        public JsonResult GetDoctores(Vw_Usuarios User)
+        public JsonResult GetDoctores(Usuarios User)
         {
             Ajax_Data result = new Ajax_Data();
             DoctorModel doctorModel = new DoctorModel();
             UsuarioModel Um = new UsuarioModel();
-            Vw_Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
+            Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
             if (UserValidate == null)
             {
                 result.Is_Error = true;
@@ -71,9 +77,9 @@ namespace DentalWhite.Controllers
             doctores.ForEach(w =>
             {
                 w.SegundoNombre = string.IsNullOrEmpty(w.SegundoNombre) ? "" : w.SegundoNombre;
-                w.PrimerNombe = w.PrimerNombe + " " + w.SegundoNombre;
-                w.SegundoApellido = string.IsNullOrEmpty(w.SegundoApellido) ? "" : w.SegundoApellido;
-                w.PrimerApellido = w.PrimerApellido + " " + w.SegundoApellido;
+                w.PrimerNombre = w.PrimerNombre + " " + w.SegundoNombre;
+                w.SegundoApelldo = string.IsNullOrEmpty(w.SegundoApelldo) ? "" : w.SegundoApelldo;
+                w.PrimerApellido = w.PrimerApellido + " " + w.SegundoApelldo;
                 
             });
             result.Objeto = doctores;
@@ -107,13 +113,13 @@ namespace DentalWhite.Controllers
 
         [HttpPost]
         [Route("Doctor/GetDoctorById")]
-        public JsonResult GetDoctorById(Vw_Usuarios User)
+        public JsonResult GetDoctorById(Usuarios User)
         {
             string id = Request["ID"];
             Ajax_Data result = new Ajax_Data();
             DoctorModel doctorModel = new DoctorModel();
             UsuarioModel Um = new UsuarioModel();
-            Vw_Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
+            Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
             if (UserValidate == null)
             {
                 result.Is_Error = true;
@@ -133,6 +139,29 @@ namespace DentalWhite.Controllers
             
 
             return Utilidades.ToJsonResult(result);
+        }
+
+        public bool ValidarDatos(Vw_Doctor doctor)
+        {
+            bool isValid = true;
+            if (string.IsNullOrEmpty(doctor.Correo))
+            {
+                isValid = false;
+            }
+            if (string.IsNullOrEmpty(doctor.Identificacion))
+            {
+                isValid = false;
+            }
+            if (string.IsNullOrEmpty(doctor.PrimerNombre))
+            {
+                isValid = false;
+            }
+            if (string.IsNullOrEmpty(doctor.PrimerApellido))
+            {
+                isValid = false;
+            }
+
+            return isValid;
         }
     }
 }

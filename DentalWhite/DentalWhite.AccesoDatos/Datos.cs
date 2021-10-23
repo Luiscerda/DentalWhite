@@ -38,34 +38,34 @@ namespace DentalWhite.AccesoDatos
 
         #region Usuarios
 
-        public Vw_Usuarios GetUsuarioValidate(string userName, string password)
+        public Usuarios GetUsuarioValidate(string userName, string password)
         {
             Conectar();
-            Vw_Usuarios usuario = DB.Vw_Usuarios.FirstOrDefault(w => w.UserName.Trim() == userName.Trim() && w.Password.Trim() == password.Trim() && w.Activo == true);
+            Usuarios usuario = DB.Usuarios.FirstOrDefault(w => w.UserName.Trim() == userName.Trim() && w.Password.Trim() == password.Trim() && w.Activo == true);
             Desconectar();
             return usuario;
         }
         #endregion
 
         #region Comun
-        public List<Vw_TipoDocumento> GetTipoDocumentos()
+        public List<TipoDocumento> GetTipoDocumentos()
         {
             Conectar();
-            List<Vw_TipoDocumento> tipoDocumentos = DB.Vw_TipoDocumento.ToList();
+            List<TipoDocumento> tipoDocumentos = DB.TipoDocumento.ToList();
             Desconectar();
             return tipoDocumentos;
         }
-        public List<Vw_Departamentos> GetDepartamentos()
+        public List<Departamentos> GetDepartamentos()
         {
             Conectar();
-            List<Vw_Departamentos> departamentos = DB.Vw_Departamentos.ToList();
+            List<Departamentos> departamentos = DB.Departamentos.ToList();
             Desconectar();
             return departamentos;
         }
-        public List<Vw_Municipios> GetMunicipiosByCodDepartamento(string codDepartamento)
+        public List<Municipios> GetMunicipiosByCodDepartamento(string codDepartamento)
         {
             Conectar();
-            List<Vw_Municipios> municipios = DB.Vw_Municipios.Where(c => c.CodDepartamento.Trim() == codDepartamento.Trim()).ToList();
+            List<Municipios> municipios = DB.Municipios.Where(c => c.CodDepartamento.Trim() == codDepartamento.Trim()).ToList();
             Desconectar();
             return municipios;
         }
@@ -97,11 +97,11 @@ namespace DentalWhite.AccesoDatos
                 {
                     try
                     {
-                        int a = (int)DB.sp_Add_Paciente(paciente.CodTipoDoc, paciente.Identificacion, paciente.PrimerNombe, paciente.SegundoNombre,
-                            paciente.PrimerApellido, paciente.SegundoApellido, paciente.Edad, paciente.FechaNacimiento, paciente.Celular, paciente.Telefono,
+                        int a = (int)DB.sp_Add_Paciente(paciente.CodTipoDoc, paciente.Identificacion, paciente.PrimerNombre, paciente.SegundoNombre,
+                            paciente.PrimerApellido, paciente.SegundoApelldo, paciente.Edad, paciente.FechaNacimiento, paciente.Celular, paciente.Telefono,
                             paciente.Correo, paciente.CodDepartamento, paciente.CodMunicipio, paciente.Barrio, paciente.Direccion, true, paciente.UserReg, DateTime.Now).FirstOrDefault().Id;
 
-                        int b = (int)DB.sp_Add_Usuario(paciente.Identificacion, "DW2021", paciente.PrimerNombe, paciente.PrimerApellido,
+                        int b = (int)DB.sp_Add_Usuario(paciente.Identificacion, "DW2021", paciente.PrimerNombre, paciente.PrimerApellido,
                             paciente.Correo, paciente.Celular, "002", true, paciente.Identificacion, DateTime.Now, paciente.UserReg).FirstOrDefault().Id;
 
                         DB.SubmitChanges();
@@ -150,8 +150,8 @@ namespace DentalWhite.AccesoDatos
                     {
                         Vw_Paciente _paciente = DB.Vw_Paciente.Where(c => c.Identificacion.Trim() == paciente.Identificacion.Trim()).FirstOrDefault();
                         result = DB.sp_Upd_Paciente(paciente.Celular, paciente.Telefono, paciente.Correo, paciente.CodDepartamento,
-                            paciente.CodMunicipio, paciente.Barrio, paciente.Direccion, paciente.UserReg, DateTime.Now, _paciente.IdPaciente);
-                        int a = DB.sp_Upd_Usuario(paciente.Celular, paciente.Correo, paciente.UserReg, DateTime.Now, paciente.Identificacion);
+                            paciente.CodMunicipio, paciente.Barrio, paciente.Direccion, paciente.UserReg, Convert.ToInt32(_paciente.IdPaciente));
+                        int a = DB.sp_Upd_Usuario(paciente.Celular, paciente.Correo, paciente.UserReg, paciente.Identificacion);
 
                         DB.SubmitChanges();
                         tran.Complete();
@@ -186,8 +186,8 @@ namespace DentalWhite.AccesoDatos
                 {
                     try
                     {
-                        int a = (int)DB.sp_Add_Doctor(doctor.CodTipoDoc, doctor.Identificacion, doctor.PrimerNombe, doctor.SegundoNombre,
-                            doctor.PrimerApellido, doctor.SegundoApellido, doctor.Edad, doctor.FechaNacimiento, doctor.Celular, doctor.Telefono,
+                        int a = (int)DB.sp_Add_Doctor(doctor.CodTipoDoc, doctor.Identificacion, doctor.PrimerNombre, doctor.SegundoNombre,
+                            doctor.PrimerApellido, doctor.SegundoApelldo, doctor.Edad, doctor.FechaNacimiento, doctor.Celular, doctor.Telefono,
                             doctor.Correo, doctor.CodDepartamento, doctor.CodMunicipio, doctor.Barrio, doctor.Direccion, true, doctor.UserReg, DateTime.Now).FirstOrDefault().Id;
 
 
@@ -237,7 +237,7 @@ namespace DentalWhite.AccesoDatos
                     {
                         Vw_Doctor _doctor = DB.Vw_Doctor.Where(c => c.Identificacion.Trim() == doctor.Identificacion.Trim()).FirstOrDefault();
                         result = DB.sp_Upd_Doctor(doctor.Celular, doctor.Telefono, doctor.Correo, doctor.CodDepartamento,
-                            doctor.CodMunicipio, doctor.Barrio, doctor.Direccion, doctor.UserReg, DateTime.Now, _doctor.IdDoctor);
+                            doctor.CodMunicipio, doctor.Barrio, doctor.Direccion, doctor.UserReg, Convert.ToInt32(_doctor.IdDoctor));
 
                         DB.SubmitChanges();
                         tran.Complete();
@@ -270,7 +270,7 @@ namespace DentalWhite.AccesoDatos
             Desconectar();
             return horas;
         }
-        public int Add_Horario(Vw_Horarios horario)
+        public int Add_Horario(Vw_Horario horario)
         {
             int result = 0;
             try
@@ -303,24 +303,24 @@ namespace DentalWhite.AccesoDatos
             }
             return result;
         }
-        public Vw_Horarios GetHorarioByIdentificacionAndCod(string identificacion, string codHora)
+        public Vw_Horario GetHorarioByIdentificacionAndCod(string identificacion, string codHora)
         {
             Conectar();
-            Vw_Horarios horario = DB.Vw_Horarios.Where(w => w.Identificacion.Trim() == identificacion.Trim() && w.CodHora == codHora).FirstOrDefault();
+            Vw_Horario horario = DB.Vw_Horario.Where(w => w.Identificacion.Trim() == identificacion.Trim() && w.CodHora == codHora).FirstOrDefault();
             Desconectar();
             return horario;
         }
-        public List<Vw_Horarios> Get_Horarios()
+        public List<Vw_Horario> Get_Horarios()
         {
             Conectar();
-            List<Vw_Horarios> horarios = DB.Vw_Horarios.ToList();
+            List<Vw_Horario> horarios = DB.Vw_Horario.ToList();
             Desconectar();
             return horarios;
         }
-        public List<Vw_Horarios> Get_HorariosByIdentificacion(string identificacion)
+        public List<Vw_Horario> Get_HorariosByIdentificacion(string identificacion)
         {
             Conectar();
-            List<Vw_Horarios> horarios = DB.Vw_Horarios.Where(w => w.Identificacion.Trim() == identificacion.Trim() && w.CodEstado == "001").ToList();
+            List<Vw_Horario> horarios = DB.Vw_Horario.Where(w => w.Identificacion.Trim() == identificacion.Trim() && w.CodEstado == "001").ToList();
             Desconectar();
             return horarios;
         }

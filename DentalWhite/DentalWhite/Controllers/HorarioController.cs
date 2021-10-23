@@ -19,12 +19,12 @@ namespace DentalWhite.Controllers
 
         [HttpPost]
         [Route("Horario/GetHoras")]
-        public JsonResult GetHoras(Vw_Usuarios User)
+        public JsonResult GetHoras(Usuarios User)
         {
             Ajax_Data result = new Ajax_Data();
             HoraModel horaModel = new HoraModel();
             UsuarioModel Um = new UsuarioModel();
-            Vw_Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
+            Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
             if (UserValidate == null)
             {
                 result.Is_Error = true;
@@ -39,12 +39,12 @@ namespace DentalWhite.Controllers
 
         [HttpPost]
         [Route("Horario/SaveHorario")]
-        public JsonResult SaveHorario(Vw_Horarios horario)
+        public JsonResult SaveHorario(Vw_Horario horario)
         {
             Ajax_Data Retorno = new Ajax_Data();
             HoraModel horaModel = new HoraModel();
 
-            Vw_Horarios _horario = horaModel.GetHorarioByIdentificacionAndCod(horario.Identificacion,horario.CodHora);
+            Vw_Horario _horario = horaModel.GetHorarioByIdentificacionAndCod(horario.Identificacion,horario.CodHora);
             if (_horario == null)
             {
                 int resul = horaModel.Add_Horario(horario);
@@ -71,25 +71,24 @@ namespace DentalWhite.Controllers
 
         [HttpPost]
         [Route("Horario/GetHorarios")]
-        public JsonResult GetHorarios(Vw_Usuarios User)
+        public JsonResult GetHorarios(Usuarios User)
         {
             Ajax_Data result = new Ajax_Data();
             HoraModel horaModel = new HoraModel();
             UsuarioModel Um = new UsuarioModel();
-            Vw_Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
+            Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
             if (UserValidate == null)
             {
                 result.Is_Error = true;
                 result.Msj = "Credenciales incorrectas";
                 return Utilidades.ToJsonResult(result);
             }
-            List<Vw_Horarios> horarios = horaModel.Get_Horarios();
+            List<Vw_Horario> horarios = horaModel.Get_Horarios();
             horarios.ForEach(w =>
             {
-                w.SegundoNombre = string.IsNullOrEmpty(w.SegundoNombre) ? "" : w.SegundoNombre;
-                w.PrimerNombre = w.PrimerNombre + " " + w.SegundoNombre;
-                w.SegundoApellido = string.IsNullOrEmpty(w.SegundoApellido) ? "" : w.SegundoApellido;
-                w.PrimerApellido = w.PrimerApellido + " " + w.SegundoApellido;
+               
+                w.PrimerNombre = w.PrimerNombre;               
+                w.PrimerApellido = w.PrimerApellido;
 
             });
             result.Objeto = horarios;
@@ -100,13 +99,13 @@ namespace DentalWhite.Controllers
 
         [HttpPost]
         [Route("Horario/GetHorariosByIdentificacion")]
-        public JsonResult GetHorariosByIdentificacion(Vw_Usuarios User)
+        public JsonResult GetHorariosByIdentificacion(Usuarios User)
         {
             string identificacion = Request["ID"];
             Ajax_Data result = new Ajax_Data();
             HoraModel model = new HoraModel();
             UsuarioModel Um = new UsuarioModel();
-            Vw_Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
+            Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
             if (UserValidate == null)
             {
                 result.Is_Error = true;

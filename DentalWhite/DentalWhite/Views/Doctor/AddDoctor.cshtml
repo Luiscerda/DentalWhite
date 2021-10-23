@@ -53,25 +53,25 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="primerApellidoFieldDoc">Primer Apellido</label>
-                                        <input class="form-control inputLastDoc" placeholder="Ingrese primer apellido" name="lastNameDoc" tabindex="4" id="primerApellidoFieldDoc" />
+                                        <input class="form-control inputLastDoc" maxlength="20" placeholder="Ingrese primer apellido" name="lastNameDoc" tabindex="4" id="primerApellidoFieldDoc" />
                                         <span id="inputLastNameError" class="labelError">Campo requerido</span>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="identificacionFieldDoc">Identificacion</label>
-                                        <input class="form-control inputIdDoc" placeholder="Ingrese identificacion" name="identificationDoc" tabindex="1" id="identificacionFieldDoc" />
+                                        <input class="form-control inputIdDoc" maxlength="10" placeholder="Ingrese identificacion" name="identificationDoc" tabindex="1" id="identificacionFieldDoc" />
                                         <span id="inputIdDocError" class="labelError">Identificacion requerida, Minimo 7 caracteres</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="segundoApellidoFieldDoc">Segundo Apellido</label>
-                                        <input class="form-control" tabindex="5" placeholder="Ingrese segundo apellido" id="segundoApellidoFieldDoc" />
+                                        <input class="form-control" tabindex="5" maxlength="20" placeholder="Ingrese segundo apellido" id="segundoApellidoFieldDoc" />
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="primerNombreFieldDoc">Primer Nombre</label>
-                                        <input class="form-control inputFirsDoc" placeholder="Ingrese primer nombre" name="firstNameDoc" tabindex="2" id="primerNombreFieldDoc" />
+                                        <input class="form-control inputFirsDoc" maxlength="15" placeholder="Ingrese primer nombre" name="firstNameDoc" tabindex="2" id="primerNombreFieldDoc" />
                                         <span id="inputFirstNameError" class="labelError">Campo requerido</span>
                                     </div>
                                     <div class="form-group">
@@ -88,11 +88,12 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="segundoNombreField">Segundo Nombre</label>
-                                        <input class="form-control" placeholder="Ingrese segundo nombre" tabindex="3" id="segundoNombreField" />
+                                        <input class="form-control" maxlength="15" placeholder="Ingrese segundo nombre" tabindex="3" id="segundoNombreField" />
                                     </div>
                                 </div>
                             </div>
                             <button class="btn btn-primary" id="BtnNext">Siguiente</button>
+                            <button class="btn btn-danger" id="cancelarDatos">Cancelar</button>
                         </div>
                         <div id="infContDoc-part" class="content" role="tabpanel" aria-labelledby="infContDoc-part-trigger">
                             <div class="row">

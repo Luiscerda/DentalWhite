@@ -1,7 +1,12 @@
 ﻿$(document).ready(function () {
+    let userGlobal = getCookieGeneral('UsuarioDW');
+    userGlobal = JSON.parse(Base64.decode(userGlobal));
     FechaMin();
     Get_DataPost(GetDoctores, '/Doctor/GetDoctores')
-    Get_DataPost(GetPacientes, '/Paciente/GetPacientes')
+    if (userGlobal.CodRol.trim() == "001") {
+        Get_DataPost(GetPacientes, '/Paciente/GetPacientes')
+    }
+    
     $('.select2').select2()
     $("#selectDoctor").change(function () {
         let identificacion = $("#selectDoctor").val();
@@ -14,7 +19,7 @@ function GetDoctores(data) {
     let htmlDocs = "";
     htmlDocs += "<option value=''>Seleccionar</option>";
     $.each(ArrayDocs, function (index, item) {
-        htmlDocs += "<option value=" + item.Identificacion.trim() + ">" + item.PrimerNombe.trim() + " " + item.PrimerApellido.trim() + "</option>";
+        htmlDocs += "<option value=" + item.Identificacion.trim() + ">" + item.PrimerNombre.trim() + " " + item.PrimerApellido.trim() + "</option>";
     })
     $("#selectDoctor").html(htmlDocs);
 }
@@ -23,7 +28,7 @@ function GetPacientes(data) {
     let htmlPacientes = "";
     htmlPacientes += "<option value=''>Seleccionar</option>";
     $.each(ArrayPacientes, function (index, item) {
-        htmlPacientes += "<option value=" + item.Identificacion.trim() + ">" + item.Identificacion.trim()+ " - " + item.PrimerNombe.trim() + " " + item.PrimerApellido.trim() + "</option>";
+        htmlPacientes += "<option value=" + item.Identificacion.trim() + ">" + item.Identificacion.trim()+ " - " + item.PrimerNombre.trim() + " " + item.PrimerApellido.trim() + "</option>";
     })
     $("#selectPaciente").html(htmlPacientes);
 }

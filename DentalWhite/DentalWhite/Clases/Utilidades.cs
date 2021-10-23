@@ -20,10 +20,10 @@ namespace DentalWhite.Clases
             return jr;
         }
 
-        public static Vw_Usuarios Base64Decode(string base64EncodedData)
+        public static Usuarios Base64Decode(string base64EncodedData)
         {
             var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
-            Vw_Usuarios User = JsonConvert.DeserializeObject<Vw_Usuarios>(System.Text.Encoding.UTF8.GetString(base64EncodedBytes));
+            Usuarios User = JsonConvert.DeserializeObject<Usuarios>(System.Text.Encoding.UTF8.GetString(base64EncodedBytes));
             return User;
         }
     }

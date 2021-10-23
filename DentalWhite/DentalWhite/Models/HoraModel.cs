@@ -17,19 +17,19 @@ namespace DentalWhite.Models
         {
             return datos.GetHoras();
         }
-        public int Add_Horario(Vw_Horarios horario)
+        public int Add_Horario(Vw_Horario horario)
         {
             return datos.Add_Horario(horario);
         }
-        public Vw_Horarios GetHorarioByIdentificacionAndCod(string identificacion, string codHora)
+        public Vw_Horario GetHorarioByIdentificacionAndCod(string identificacion, string codHora)
         {
             return datos.GetHorarioByIdentificacionAndCod(identificacion, codHora);
         }
-        public List<Vw_Horarios> Get_Horarios()
+        public List<Vw_Horario> Get_Horarios()
         {
             return datos.Get_Horarios();
         }
-        public List<Vw_Horarios> Get_HorariosByIdentificacion(string identificacion)
+        public List<Vw_Horario> Get_HorariosByIdentificacion(string identificacion)
         {
             return datos.Get_HorariosByIdentificacion(identificacion);
         }

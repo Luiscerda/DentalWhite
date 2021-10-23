@@ -2,52 +2,58 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DB">
   <DataContextMoniker Name="/DBDataContext" />
   <nestedChildShapes>
-    <classShape Id="90f0b6df-48db-4584-bde5-983175822201" isExpanded="false" absoluteBounds="0.5, 0.5, 2, 0.45">
-      <DataClassMoniker Name="/DBDataContext/Vw_Usuarios" />
-      <nestedChildShapes>
-        <elementListCompartment Id="48e3d2b1-fbd8-4acc-865f-dd132faae591" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="cc081dda-9de1-4faa-bef8-40cfe87fad24" isExpanded="false" absoluteBounds="2.75, 0.5, 2, 0.45">
-      <DataClassMoniker Name="/DBDataContext/Vw_TipoDocumento" />
-      <nestedChildShapes>
-        <elementListCompartment Id="33fe7601-5a1e-42eb-bae4-5ee3cee15b90" absoluteBounds="2.7649999999999997, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="a1a44a37-dd16-430e-b7d2-758f503d5491" isExpanded="false" absoluteBounds="5.125, 0.5, 2, 0.45">
-      <DataClassMoniker Name="/DBDataContext/Vw_Departamentos" />
-      <nestedChildShapes>
-        <elementListCompartment Id="090cad89-e7c4-401f-80e4-f0bb317484ed" absoluteBounds="5.14, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="b29e8be3-b6ca-40e6-98fd-877aa8b023af" isExpanded="false" absoluteBounds="7.5, 0.5, 2, 0.45">
-      <DataClassMoniker Name="/DBDataContext/Vw_Municipios" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ab52c5e7-8fc8-40b5-adfe-e4f613e13f22" absoluteBounds="7.5150000000000006, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="976107f6-d822-451e-bc70-86a18bc8159e" isExpanded="false" absoluteBounds="0.5, 1.25, 2, 0.45">
+    <classShape Id="40e9cd3b-f3a5-4ee8-8d6e-acae886c3382" isExpanded="false" absoluteBounds="0.5, 1.25, 2, 0.45">
       <DataClassMoniker Name="/DBDataContext/Vw_Paciente" />
       <nestedChildShapes>
-        <elementListCompartment Id="08f99d6f-7bb1-43e1-93f5-89ff52189d85" absoluteBounds="0.51499999999999968, 1.71, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d143e85b-0b51-4827-b800-354d96b753ad" absoluteBounds="0.51499999999999968, 1.71, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="7a12922c-4419-4940-9a16-70d7b625e818" isExpanded="false" absoluteBounds="2.75, 1.25, 2, 0.45">
-      <DataClassMoniker Name="/DBDataContext/Vw_Doctor" />
+    <classShape Id="c4eed1f2-1fd9-4998-8d9d-f5b9eb2e8326" isExpanded="false" absoluteBounds="0.5, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/DBDataContext/TipoDocumento" />
       <nestedChildShapes>
-        <elementListCompartment Id="0712cd85-184f-4860-92d9-9ecc2f36d4ab" absoluteBounds="2.7649999999999997, 1.71, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="55318c94-ad07-4906-980c-5e9de1342ea4" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="01168816-58e0-4a93-841f-df0bcb3a8f91" isExpanded="false" absoluteBounds="5.125, 1.25, 2, 0.45">
+    <classShape Id="13e45453-8f09-4b9a-bd75-266cada01599" isExpanded="false" absoluteBounds="5.125, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/DBDataContext/Departamentos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="837625d9-a173-4d11-90f5-909767ed84e5" absoluteBounds="5.14, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8634ef17-9d36-41bb-b2e0-e8f500779cd8" isExpanded="false" absoluteBounds="7.5, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/DBDataContext/Municipios" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d735c7d5-880f-46c6-abb7-6aa16450a9dc" absoluteBounds="7.515, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="46085233-467d-41d3-8ae3-056771138044" isExpanded="false" absoluteBounds="5.125, 1.25, 2, 0.45">
       <DataClassMoniker Name="/DBDataContext/Vw_Hora" />
       <nestedChildShapes>
-        <elementListCompartment Id="ce3f2dd0-4000-4361-91d5-df7c846d2eb8" absoluteBounds="5.14, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="bffaa23e-09ec-48c0-928a-7e3fb44a9166" absoluteBounds="5.14, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="d5c7bb39-fd79-48fa-82c1-bcb8a6325948" isExpanded="false" absoluteBounds="7.5, 1.25, 2, 0.45">
-      <DataClassMoniker Name="/DBDataContext/Vw_Horarios" />
+    <classShape Id="2554537f-c254-4006-97a4-b896dc4f838c" isExpanded="false" absoluteBounds="7.5, 1.25, 2, 0.45">
+      <DataClassMoniker Name="/DBDataContext/Vw_Horario" />
       <nestedChildShapes>
-        <elementListCompartment Id="765c0de6-6312-4ef4-a9a6-24f4187f584f" absoluteBounds="7.5150000000000006, 1.71, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d7ee30c0-af15-42ea-b5c1-526bcfa581c5" absoluteBounds="7.5150000000000006, 1.71, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="16ffc32f-4558-4a0b-9cdd-980d2c97a798" isExpanded="false" absoluteBounds="0.5, 2, 2, 0.45">
+      <DataClassMoniker Name="/DBDataContext/Roles" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7c26f98e-0420-4a38-aada-31c7043937a6" absoluteBounds="0.51499999999999968, 2.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="19287754-474e-48b5-bb62-763a233b0f00" isExpanded="false" absoluteBounds="2.75, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/DBDataContext/Usuarios" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5366a96b-5d44-45d2-9829-5d1e2e81293a" absoluteBounds="2.7649999999999997, 0.96, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="980bd033-ed0a-492b-a5d1-d14aa676c52c" isExpanded="false" absoluteBounds="2.75, 1.25, 2, 0.45">
+      <DataClassMoniker Name="/DBDataContext/Vw_Doctor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bd20f64a-2a7e-4ff3-84b8-70b358ebb567" absoluteBounds="2.7649999999999997, 1.71, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

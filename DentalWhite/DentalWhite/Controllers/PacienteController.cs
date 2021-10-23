@@ -55,12 +55,12 @@ namespace DentalWhite.Controllers
 
         [HttpPost]
         [Route("Paciente/GetPacientes")]
-        public JsonResult GetPacientes(Vw_Usuarios User)
+        public JsonResult GetPacientes(Usuarios User)
         {
             Ajax_Data result = new Ajax_Data();
             PacienteModel pacienteModel = new PacienteModel();
             UsuarioModel Um = new UsuarioModel();
-            Vw_Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
+            Usuarios UserValidate = Um.GetUsuarioValidate(User.UserName, User.Password);
             if (UserValidate == null)
             {
                 result.Is_Error = true;
@@ -71,9 +71,9 @@ namespace DentalWhite.Controllers
             pacientes.ForEach(w =>
             {
                 w.SegundoNombre = string.IsNullOrEmpty(w.SegundoNombre) ? "" : w.SegundoNombre;
-                w.PrimerNombe = w.PrimerNombe + " " + w.SegundoNombre;
-                w.SegundoApellido = string.IsNullOrEmpty(w.SegundoApellido) ? "" : w.SegundoApellido;
-                w.PrimerApellido = w.PrimerApellido + " " + w.SegundoApellido;
+                w.PrimerNombre = w.PrimerNombre + " " + w.SegundoNombre;
+                w.SegundoApelldo = string.IsNullOrEmpty(w.SegundoApelldo) ? "" : w.SegundoApelldo;
+                w.PrimerApellido = w.PrimerApellido + " " + w.SegundoApelldo;
             });
             result.Objeto = pacientes;
             result.Is_Error = false;

@@ -1,6 +1,13 @@
 ﻿<script src="~/Content/plugins/jquery/jquery.min.js"></script>
 <script src="~/Scripts/App/Cita/Asignar.js"></script>
 @{
+    DentalWhite.AccesoDatos.Usuarios usuario = new DentalWhite.AccesoDatos.Usuarios();
+    if (Request.Cookies["UsuarioDW"] != null)
+    {
+        usuario = DentalWhite.Clases.Utilidades.Base64Decode(Request.Cookies["UsuarioDW"].Value);
+    }
+}
+@{
     ViewBag.Title = "Asignar cita";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -27,7 +34,19 @@
             <div class="card-body">
                 <div class="form-group">
                     <label>Escoja un paciente</label>
-                    <select class="form-control select2" id="selectPaciente"></select>
+                    @{
+                        if (usuario.CodRol.Trim().Equals("001"))
+                        {
+                            <select class="form-control select2" id="selectPaciente"></select>
+                        }
+                        else
+                        {
+                            <select class="form-control select2" id="selectPaciente">
+                                <option value="@usuario.Identificacion" selected>@usuario.Identificacion - @usuario.Nombre.Trim()  @usuario.Apellido.Trim()</option>
+                            </select>
+                        }
+                    }
+
                 </div>
             </div>
         </div>

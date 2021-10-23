@@ -38,6 +38,12 @@ $(document).ready(function () {
         var codDepartamento = this.value;
         Get_DataPost(GetMunicipiosDoc, '/Comun/GetMunicipiosByCodDepartamento?' + "&CodDepar=" + codDepartamento + "&o=")
     });
+    $("#identificacionFieldDoc").on("keypress", function (event) {
+        return valideKey(event);
+    });
+    $("#cancelarDatos").on("click", function () {
+        cancelarDatos();
+    });
 });
 function hideElementSpanDoc() {
     $("#inputIdDocError").hide();
@@ -49,6 +55,9 @@ function hideElementSpanDoc() {
     $("#inputFirstNameError").hide();
     $("#inputDateError").hide();
     $("#inputTipoError").hide();
+    unhighlight('input[name=identificationDoc]');
+    unhighlight('input[name=firstNameDoc]');
+    unhighlight('input[name=lastNameDoc]');
 }
 function GetTipoDocumentosDoc(data) {
     var ArrayTipoDocumentos = data.Objeto;
@@ -179,16 +188,6 @@ function validarCamposContacto() {
     }
     return valido;
 }
-function calcularEdad(fecha) {
-    var actual = new Date();
-    var nacimiento = new Date(fecha);
-    var anios = actual.getFullYear() - nacimiento.getFullYear();
-    var meses = actual.getMonth() - nacimiento.getMonth();
-    if (meses < 0 || (meses === 0 && actual.getDate() < nacimiento.getDate())) {
-        anios--;
-    }
-    return anios;
-}
 function ValidacionCampos() {
     $('input[name=identificationDoc]').on('keyup', () => {
 
@@ -210,7 +209,11 @@ function ValidacionCampos() {
     $('input[name=firstNameDoc]').on('keyup', () => {
 
         var input1 = $('.inputFirsDoc').val();
-        if (input1.length > 0) {
+        if (input1.length == 0) {
+            unhighlight('input[name=firstNameDoc]');
+            $("#inputFirstNameError").hide();
+        }
+        else if (input1.length > 0) {
             unhighlight('input[name=firstNameDoc]');
             $("#inputFirstNameError").hide();
         }else {
@@ -221,7 +224,11 @@ function ValidacionCampos() {
     $('input[name=lastNameDoc]').on('keyup', () => {
 
         var input1 = $('.inputLastDoc').val();
-        if (input1.length > 0) {
+        if (input1.length == 0) {
+            unhighlight('input[name=lastNameDoc]');
+            $("#inputLastNameError").hide();
+        }
+        else if (input1.length > 0) {
             unhighlight('input[name=lastNameDoc]');
             $("#inputLastNameError").hide();
         } else {
@@ -261,8 +268,8 @@ function FechaMax() {
 function GuardarDoctorClick() {
     $("#BtnSaveDoctor").on("click", function () {
         ObjetoGuardarDoctor = {
-            CodTipoDoc: $("#selectTipoIdDoc").val(), Identificacion: $("#identificacionFieldDoc").val(), PrimerNombe: $("#primerNombreFieldDoc").val(),
-            SegundoNombre: $("#segundoNombreField").val(), PrimerApellido: $("#primerApellidoFieldDoc").val(), SegundoApellido: $("#segundoApellidoFieldDoc").val(),
+            CodTipoDoc: $("#selectTipoIdDoc").val(), Identificacion: $("#identificacionFieldDoc").val(), PrimerNombre: $("#primerNombreFieldDoc").val(),
+            SegundoNombre: $("#segundoNombreField").val(), PrimerApellido: $("#primerApellidoFieldDoc").val(), SegundoApelldo: $("#segundoApellidoFieldDoc").val(),
             Edad: edad, FechaNacimiento: $('#fechaNacDoc').val(), Celular: $("#celularFieldDoc").val(), Telefono: $("#telefonoField").val(),
             Correo: $("#correoFieldDoc").val(), CodDepartamento: $("#selectDepartamentosDoc").val(), CodMunicipio: $("#selectMunicipiosDoc").val(),
             Barrio: $("#barrioDoc").val(), Direccion: $("#direccionDoc").val(), UserReg: userGlobal.UserId
@@ -303,4 +310,12 @@ function GuardarDoctor(data) {
         ObjetoGuardarDoctor = {};
         limpiarCamposDoc();
     }
+}
+function cancelarDatos() {
+    $("#identificacionFieldDoc").val('');
+    $("#primerNombreFieldDoc").val('');
+    $("#segundoNombreField").val('');
+    $("#primerApellidoFieldDoc").val('');
+    $("#segundoApellidoFieldDoc").val('');
+    hideElementSpanDoc();
 }

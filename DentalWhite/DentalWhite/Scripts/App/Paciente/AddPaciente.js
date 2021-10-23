@@ -1,14 +1,18 @@
 ﻿var ObjetoGuardarPaciente = {};
 var stepper;
+let edadPaci;
 $(document).ready(function () {
     hideElementSpan();
     validation();
+    FechaMaxPac();
     GuardarPacienteClick();
     stepper = new Stepper($('.bs-stepper')[0])
     
     $("#BtnNext").on("click", function (event) {
-        stepper.next();
-        event.preventDefault();
+        if (ValidarDatosPersonalesPaciente()) {
+            stepper.next();
+            event.preventDefault();
+        }
     });
     $("#BtnPre").on("click", function (event) {
         stepper.previous()
@@ -63,7 +67,9 @@ $(document).ready(function () {
         var codDepartamento = $("#selectDepartamentos").val();
         Get_DataPost(GetMunicipios, '/Comun/GetMunicipiosByCodDepartamento?' + "&CodDepar=" + codDepartamento + "&o=")
     });
-    
+    $("#cancelarDatosPac").on("click", function () {
+        cancelarDatosPac();
+    });
 });
 
 
@@ -78,16 +84,19 @@ function GetTipoDocumentos(data) {
 }
 
 function hideElementSpan() {
+    $("#inputTipoError").hide();
+    $("#inputLastNameError").hide();
     $("#inputIdError").hide();
+    $("#inputFirstNameError").hide();
+    $("#inputDateError").hide();
+    unhighlight('input[name=identification]');
+    unhighlight('input[name=firstName]');
+    unhighlight('input[name=lastName]');
+
     $("#inputCelError").hide();
     $("#inputCelError2").hide();
     $("#inputCorreoError").hide();
     $("#inputCorreoError2").hide();
-    $('#BtnNext').addClass('disabled').prop('disabled', true);
-    $('input[name=firstName]').prop('disabled', true);
-    $('input[name=lastName]').prop('disabled', true);
-    $('input[name=age]').prop('disabled', true);
-    $('input[name=date]').prop('disabled', true);
 }
 
 function GetDepartamentos(data) {
@@ -105,69 +114,66 @@ function validation() {
         var input1 = $('.inputId').val();
 
         if (input1.length == 0) {
-            $('input[name=firstName]').prop('disabled', true);
             unhighlight('input[name=identification]');
             $("#inputIdError").hide();
-            $("#inputLastError").hide();
         }
         else if (input1.length > 7) {
-            $('input[name=firstName]').removeAttr('style').removeAttr('disabled');
             unhighlight('input[name=identification]');
             $("#inputIdError").hide();
-            $("#inputLastError").hide();
         }
         else {
-            $('input[name=firstName]').prop('disabled', true);
-            $('input[name=lastName]').prop('disabled', true);
-            $('input[name=age]').prop('disabled', true);
             highLight('input[name=identification]')
             $("#inputIdError").show();
-
-            $('#BtnNext').addClass('disabled').prop('disabled', true);
         }
     });
     $('input[name=firstName]').on('keyup', () => {
         var input2 = $('.inputFirs').val();
 
-        if (input2.length > 2) {
-            $('input[name=lastName]').removeAttr('style').removeAttr('disabled');
+        if (input2.length == 0) {
             unhighlight('input[name=firstName]');
+            $("#inputFirstNameError").hide();
+        } else if (input2.length > 0) {
+            unhighlight('input[name=firstName]');
+            $("#inputFirstNameError").hide();
         }
         else {
-            $('input[name=lastName]').prop('disabled', true);
-            $('#BtnNext').addClass('disabled').prop('disabled', true);
+            highLight('input[name=firstName]')
+            $("#inputFirstNameError").show();
         }
     });
     $('input[name=lastName]').on('keyup', () => {
         var input2 = $('.inputLast').val();
 
-        if (input2.length > 2) {
-            $('input[name=age]').removeAttr('style').removeAttr('disabled');
+        if (input2.length == 0) {
             unhighlight('input[name=lastName]');
+            $("#inputLastNameError").hide();
+        }
+        else if (input2.length > 0) {
+            unhighlight('input[name=lastName]');
+            $("#inputLastNameError").hide();
         }
         else {
-            $('input[name=age]').prop('disabled', true);
-            $('#BtnNext').addClass('disabled').prop('disabled', true);
+            highLight('input[name=lastName]')
+            $("#inputLastNameError").show();
         }
     });
-    $('input[name=age]').on('keyup', () => {
-        var input2 = $('.inputAge').val();
-
-        if (input2.length > 0) {
-            $('input[name=date]').removeAttr('style').removeAttr('disabled');
-            unhighlight('input[name=age]');
-        }
-        else {
-            $('#BtnNext').addClass('disabled').prop('disabled', true);
+    $("#fechaNacDoc").on("change", function () {
+        var input1 = this.value;
+        if (input1 != "") {
+            unhighlight('input[name=fechaNacDoc]');
+            $("#inputDateError").hide();
         }
     });
-    $("#fechaNac").on("change", function () {
-        var input2 = $('#fechaNac').val();
-        $('#BtnNext').removeClass('disabled').removeAttr('disabled');
+    $("#selectTipoId").on("change", function () {
+        var input1 = this.value;
+        if (input1 != "") {
+            $("#inputTipoError").hide();
+        }
     });
     $("#identificacionField").on("keypress", function () {
-        return soloNumeros(event);
+        return valideKey(event);
     });
+
     $('input[name=celularField]').on('keyup', () => {
 
         var input2 = $('.celular').val();
@@ -195,6 +201,22 @@ function validation() {
         }
 
     });
+    
+}
+function FechaMaxPac() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("fechaNacDoc").setAttribute("max", today);
 }
 function GetMunicipios(data) {
     var ArrayMunicipios = data.Objeto;
@@ -205,13 +227,73 @@ function GetMunicipios(data) {
     })
     $('#selectMunicipios').html(htmlMunicipios);
 }
-
+function ValidarDatosPersonalesPaciente() {
+    let valido = false;
+    var tipoDoc = $("#selectTipoId").val();
+    var identificacion = $("#identificacionField").val();
+    var primerNombre = $("#primerNombreField").val();
+    var primerApellido = $("#primerApellidoField").val();
+    var fechaNa = $("#fechaNacDoc").val();
+    if (tipoDoc == "") {
+        highLight('input[name=selectTipoId]')
+        $("#inputTipoError").show();
+    } else {
+        unhighlight('input[name=selectTipoId]');
+        $("#inputTipoError").hide();
+    }
+    if (identificacion == "") {
+        highLight('input[name=identification]')
+        $("#inputIdError").show();
+    } else if (identificacion.length < 8) {
+        highLight('input[name=identification]')
+        $("#inputIdError").show();
+    } else {
+        unhighlight('input[name=identification]');
+        $("#inputIdError").hide();
+    }
+    if (primerNombre == "") {
+        highLight('input[name=firstName]')
+        $("#inputFirstNameError").show();
+    } else {
+        unhighlight('input[name=firstName]');
+        $("#inputFirstNameError").hide();
+    }
+    if (primerApellido == "") {
+        highLight('input[name=lastName]')
+        $("#inputLastNameError").show();
+    } else {
+        unhighlight('input[name=lastName]');
+        $("#inputLastNameError").hide();
+    }
+    if (fechaNa == "") {
+        highLight('input[name=dateDoc]')
+        $("#inputDateError").show();
+    } else {
+        unhighlight('input[name=dateDoc]');
+        $("#inputDateError").hide();
+        edadPaci = calcularEdad(fechaNa);
+    }
+    if (tipoDoc != "") {
+        if (identificacion != "") {
+            if (identificacion.length >= 8) {
+                if (primerNombre != "") {
+                    if (primerApellido != "") {
+                        if (fechaNa != "") {
+                            valido = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return valido;
+}
 function GuardarPacienteClick() {
     $("#BtnSavePatient").on("click", function () {
         ObjetoGuardarPaciente = {
-            CodTipoDoc: $("#selectTipoId").val(), Identificacion: $("#identificacionField").val(), PrimerNombe: $("#primerNombreField").val(),
-            SegundoNombre: $("#segundoNombreField").val(), PrimerApellido: $("#primerApellidoField").val(), SegundoApellido: $("#segundoApellidoField").val(),
-            Edad: $("#edadField").val(), FechaNacimiento: $('#fechaNac').val(), Celular: $("#celularField").val(), Telefono: $("#telefonoField").val(),
+            CodTipoDoc: $("#selectTipoId").val(), Identificacion: $("#identificacionField").val(), PrimerNombre: $("#primerNombreField").val(),
+            SegundoNombre: $("#segundoNombreField").val(), PrimerApellido: $("#primerApellidoField").val(), SegundoApelldo: $("#segundoApellidoField").val(),
+            Edad: edadPaci, FechaNacimiento: $('#fechaNacDoc').val(), Celular: $("#celularField").val(), Telefono: $("#telefonoField").val(),
             Correo: $("#correoField").val(), CodDepartamento: $("#selectDepartamentos").val(), CodMunicipio: $("#selectMunicipios").val(),
             Barrio: $("#barrio").val(), Direccion: $("#direccion").val(), UserReg: userGlobal.UserId
         }
@@ -237,16 +319,6 @@ function GuardarPaciente(data) {
         limpiarCampos();
     }
 }
-function soloNumeros(evt) {
-    var code = (evt.which) ? evt.which : evt.keyCode;
-    if (code == 8) {
-        return true;
-    } else if (code >= 48 && code <= 57) {
-        return true;
-    } else {
-        return false
-    }
-}
 function limpiarCampos() {
     stepper.to(1);
     $("#identificacionField").val('');
@@ -254,13 +326,20 @@ function limpiarCampos() {
     $("#segundoNombreField").val('');
     $("#primerApellidoField").val('');
     $("#segundoApellidoField").val('');
-    $("#edadField").val('');
-    $('#fechaNac').val('');
     $("#celularField").val('');
     $("#telefonoField").val('');
     $("#correoField").val('');
     $("#barrio").val('');
     $("#direccion").val('');
     
+    hideElementSpan();
+}
+function cancelarDatosPac() {
+    $("#identificacionField").val('');
+    $("#primerNombreField").val('');
+    $("#segundoNombreField").val('');
+    $("#primerApellidoField").val('');
+    $("#segundoApellidoField").val('');
+    $("#selectTipoId").val('').trigger('change')
     hideElementSpan();
 }

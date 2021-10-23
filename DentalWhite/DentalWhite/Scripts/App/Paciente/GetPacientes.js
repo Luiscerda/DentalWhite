@@ -111,7 +111,7 @@ function GetPacientes(data) {
         TablaPacientes.row.add([
             item.DescTipo,
             item.Identificacion,
-            item.PrimerNombe,
+            item.PrimerNombre,
             item.PrimerApellido,
             item.Edad,
             item.Celular,
@@ -120,7 +120,7 @@ function GetPacientes(data) {
         $("#edit_Paciente_" + item.IdPaciente).on("click", function () {
             hideElementSpanUpd();
             $("#identificacionUpdate").val(item.Identificacion);
-            $("#nombreUpdate").val(item.PrimerNombe + " " + item.PrimerApellido);
+            $("#nombreUpdate").val(item.PrimerNombre + " " + item.PrimerApellido);
             $("#celularFieldUpdt").val(item.Celular);
             $("#telefonoFieldUpd").val(item.Telefono);
             $("#correoFieldUpd").val(item.Correo);

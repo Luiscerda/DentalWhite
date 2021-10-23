@@ -57,3 +57,26 @@ function CloseModalBox() {
     }, 1000);
 
 }
+function valideKey(evt) {
+
+    // code is the decimal ASCII representation of the pressed key.
+    var code = (evt.which) ? evt.which : evt.keyCode;
+
+    if (code == 8) { // backspace.
+        return true;
+    } else if (code >= 48 && code <= 57) { // is a number.
+        return true;
+    } else { // other keys.
+        return false;
+    }
+}
+function calcularEdad(fecha) {
+    var actual = new Date();
+    var nacimiento = new Date(fecha);
+    var anios = actual.getFullYear() - nacimiento.getFullYear();
+    var meses = actual.getMonth() - nacimiento.getMonth();
+    if (meses < 0 || (meses === 0 && actual.getDate() < nacimiento.getDate())) {
+        anios--;
+    }
+    return anios;
+}

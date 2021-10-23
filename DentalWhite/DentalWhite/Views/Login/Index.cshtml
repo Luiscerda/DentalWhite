@@ -17,7 +17,16 @@
     <link rel="stylesheet" href="~/Content/plugins/sweetalert/sweetalert.css"/>
     
 </head>
+
 <body class="hold-transition login-page" style="background-image:url(../../Content/dist/img/fondo.jpg);background-size:cover;background-position-y:center">
+    <style>
+        .labelError {
+            color: #dc3545;
+            font-size: 80%;
+            margin-top: .25rem;
+            width: 100%;
+        }
+    </style>
     <div class="login-box">
         <div class="login-logo">
             <a><b>Dental</b>White</a>
@@ -26,20 +35,22 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Iniciar sesión para empezar</p>
                 <div class="input-group mb-3">
-                    <input class="form-control" autocomplete="off" id="UserName" placeholder="Nombre de usuario" />
+                    <input class="form-control userNa" autocomplete="off" id="UserName" maxlength="15" name="UserName" placeholder="Nombre de usuario" />
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
                         </div>
                     </div>
+                    <span id="inputUserError" class="labelError">UserName requerido, Minimo 8 caracteres</span>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" id="Password" autocomplete="off" placeholder="Contraseña" />
+                    <input type="password" class="form-control Pass" id="Password" name="Password" maxlength="15" autocomplete="off" placeholder="Contraseña" />
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
+                    <span id="inputPassError" class="labelError">Contraseña demaciado corta</span>
                 </div>
                 <div class="row">
                     <div class="col-7">
