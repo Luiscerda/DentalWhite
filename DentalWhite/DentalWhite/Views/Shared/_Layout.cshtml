@@ -45,6 +45,7 @@ else
             var doctor = "nav-link";
             var horario = "nav-link";
             var cita = "nav-link";
+            var reporte = "nav-link";
             switch (vista)
             {
                 case "Agregar Paciente":
@@ -64,8 +65,11 @@ else
                 case "Asignar cita":
                     cita = "nav-link active";
                     break;
+                case "Reporte":
+                    reporte = "nav-link active";
+                    break;
             }
-         }
+        }
         <div class="wrapper">
             <div class="preloader flex-column justify-content-center align-items-center">
                 <img class="animation__shake" src="~/Content/dist/img/dentalwhite.jpeg" height="60" width="60" alt="ImageDentalWhite" />
@@ -211,6 +215,17 @@ else
                                     </li>
                                 }
                             }
+                            @{
+                                if (usuario.CodRol.Trim().Equals("001"))
+                                {
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Index", "Reporte")' class="@reporte">
+                                            <i class="nav-icon fas fa-chart-pie"></i>
+                                            <p>Reportes</p>
+                                        </a>
+                                    </li>
+                                }
+                            }
 
                             <li class="nav-item">
                                 <a id="cerrarSesion" class="nav-link" style="cursor:pointer">
@@ -228,10 +243,10 @@ else
                         <div class="row mb-2">
                             <div class="col-sm-6">
                                 @*@{
-                                    int position = ViewBag.Title.IndexOf("/");
-            var s = ViewBag.Title.Contains("/") ? ViewBag.Title.Substring(0, position) : ViewBag.Title;
-        }
-                                <h1 class="m-0">@s</h1>*@
+                                                            int position = ViewBag.Title.IndexOf("/");
+                                    var s = ViewBag.Title.Contains("/") ? ViewBag.Title.Substring(0, position) : ViewBag.Title;
+                                }
+                                                        <h1 class="m-0">@s</h1>*@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -298,6 +313,7 @@ else
         @*<script src="~/Scripts/Plugins/sweetalert/sweetalert.min.js"></script>*@
         <script src="~/Content/dist/js/adminlte.js"></script>
         <script src="~/Content/dist/js/demo.js"></script>
+        <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
         @*<script src="~/Content/dist/js/pages/dashboard.js"></script>*@
     </body>
 </html>

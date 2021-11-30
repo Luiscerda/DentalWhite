@@ -278,4 +278,10 @@
     <Parameter Name="UserMod" Parameter="userMod" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.Edades" Method="Edades">
+    <ElementType Name="EdadesResult">
+      <Column Name="Edad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

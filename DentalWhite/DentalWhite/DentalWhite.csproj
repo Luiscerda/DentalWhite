@@ -164,6 +164,7 @@
     <Compile Include="Controllers\HorarioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -173,6 +174,7 @@
     <Compile Include="Models\DoctorModel.cs" />
     <Compile Include="Models\HoraModel.cs" />
     <Compile Include="Models\PacienteModel.cs" />
+    <Compile Include="Models\ReporteModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -844,6 +846,7 @@
     <Content Include="Scripts\App\Login\Login.js" />
     <Content Include="Scripts\App\Paciente\AddPaciente.js" />
     <Content Include="Scripts\App\Paciente\GetPacientes.js" />
+    <Content Include="Scripts\App\Reporte\Reportes.js" />
     <Content Include="Scripts\Utilidades.js" />
     <Content Include="Scripts\Base64.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -951,6 +954,7 @@
     <Content Include="Views\Doctor\GetDoctor.cshtml" />
     <Content Include="Views\Horario\Index.cshtml" />
     <Content Include="Views\Cita\GetCitas.cshtml" />
+    <Content Include="Views\Reporte\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

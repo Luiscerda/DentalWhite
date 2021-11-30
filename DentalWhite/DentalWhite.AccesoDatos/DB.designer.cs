@@ -255,6 +255,13 @@ namespace DentalWhite.AccesoDatos
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, codHora, codEstado, userMod);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Edades")]
+		public ISingleResult<EdadesResult> Edades()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<EdadesResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Paciente")]
@@ -2873,6 +2880,50 @@ namespace DentalWhite.AccesoDatos
 				if ((this._Id != value))
 				{
 					this._Id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class EdadesResult
+	{
+		
+		private int _Edad;
+		
+		private System.Nullable<int> _Cantidad;
+		
+		public EdadesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Edad", DbType="Int NOT NULL")]
+		public int Edad
+		{
+			get
+			{
+				return this._Edad;
+			}
+			set
+			{
+				if ((this._Edad != value))
+				{
+					this._Edad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
+		public System.Nullable<int> Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this._Cantidad = value;
 				}
 			}
 		}

@@ -372,5 +372,16 @@ namespace DentalWhite.AccesoDatos
             return citas;
         }
         #endregion
+
+        #region Reportes
+
+        public List<EdadesResult> edadesResult()
+        {
+            Conectar();
+            var result = DB.Edades().ToList();
+            Desconectar();
+            return result;
+        }
+        #endregion
     }
 }
